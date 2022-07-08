@@ -2,7 +2,8 @@ import React, {FC, useEffect} from 'react';
 import './style/app.scss'
 import FieldComponent from './components/Field';
 import fieldState from './store/FieldState';
-import { Field } from './model/Field'
+import { Field } from './model/Field';
+import {  BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 const App: FC = () => {
 	useEffect(() => {
@@ -10,11 +11,18 @@ const App: FC = () => {
         fieldState.initPerformance(field);
     }, [])
 	return (
-		<div className="app">
-			<div className="app_content">
-				<FieldComponent/>
+		<BrowserRouter>
+			<div className="app">
+				<Switch>
+					<Route path='/:id'>
+						<div className="app_content">
+							<FieldComponent/>
+						</div>
+					</Route>
+					<Redirect to={`f${(+new Date()).toString(16)}`}/>
+				</Switch>
 			</div>
-		</div>
+		</BrowserRouter>
 	);
 }
 
