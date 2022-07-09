@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import './style/app.scss'
 import FieldComponent from './components/Field';
 import fieldState from './store/FieldState';
@@ -10,12 +10,13 @@ const App: FC = () => {
 		const field = new Field();
         fieldState.initPerformance(field);
     }, [])
+
 	return (
 		<BrowserRouter>
 			<div className="app">
 				<Switch>
 					<Route path='/:id'>
-						<div className="app_content">
+						<div className="app__content">
 							<FieldComponent/>
 						</div>
 					</Route>
