@@ -1,7 +1,7 @@
-import {ICard, IPlayer, ICardState} from '../index'
+import {ICard, IPlayerData, ICardState} from '../index'
 
 export interface IInitialResponse {
-    players: IPlayer[],
+    players: IPlayerData[],
     cards: ICard[],
     state: string, //todo
     cardsState: ICardState[]

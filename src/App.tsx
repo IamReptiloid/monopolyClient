@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import './style/app.scss'
 import {  BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Monopoly from './components/Monopoly';
-
+import Registration from './components/Registration';
 
 
 const App: FC = () => {
@@ -13,7 +13,10 @@ const App: FC = () => {
 					<Route path='/:id'>
 						<Monopoly/>
 					</Route>
-					<Redirect to={`f${(+new Date()).toString(16)}`}/>
+					<Route path='/'>
+						<Registration/>
+					</Route>
+					<Redirect to={`/`}/>
 				</Switch>
 			</div>
 		</BrowserRouter>

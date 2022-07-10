@@ -12,7 +12,9 @@ interface iParams {
 const Monopoly: FC = () => {
 	const params = useParams<iParams>();
     useEffect(() => {
-    	sessionState.setSessionId(params.id);
+        if(!sessionState.sessionId) {
+    	    sessionState.setSessionId(params.id);
+        }
 		const field = new Field();
         setInitState(field);
     }, [])
