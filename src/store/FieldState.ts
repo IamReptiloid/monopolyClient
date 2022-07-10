@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { IField } from '../interface';
+import { ICard, IField } from '../interface';
 
 class FieldState {
     performance: null | IField = null;
@@ -8,8 +8,8 @@ class FieldState {
         makeAutoObservable(this);
     }
 
-    async initPerformance(performance: IField) {
-        await performance.init();
+    initPerformance(performance: IField, cards: ICard[]) {
+        performance.init(cards);
         this.performance = performance
     }
 }

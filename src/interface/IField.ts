@@ -1,6 +1,6 @@
 export interface ICard {
     id: number,
-    img: string,
+    image: string,
     type: string // TODO enum
 }
 
@@ -16,6 +16,6 @@ export interface ICell extends ICard {
 
 export interface IField {
     border: ICell[],
-    init(): void
+    init(cards: ICard[]): void
 }
 

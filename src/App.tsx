@@ -1,24 +1,17 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC} from 'react';
 import './style/app.scss'
-import FieldComponent from './components/Field';
-import fieldState from './store/FieldState';
-import { Field } from './model/Field';
 import {  BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import Monopoly from './components/Monopoly';
+
+
 
 const App: FC = () => {
-	useEffect(() => {
-		const field = new Field();
-        fieldState.initPerformance(field);
-    }, [])
-
 	return (
 		<BrowserRouter>
 			<div className="app">
 				<Switch>
 					<Route path='/:id'>
-						<div className="app__content">
-							<FieldComponent/>
-						</div>
+						<Monopoly/>
 					</Route>
 					<Redirect to={`f${(+new Date()).toString(16)}`}/>
 				</Switch>

@@ -4,7 +4,7 @@ export interface IPosition {
 }
 
 export interface IPropsCard {
-    img: string,
+    image: string,
     position: IPosition,
 }
 
