@@ -1,26 +1,24 @@
 import { makeAutoObservable } from "mobx";
-import axios from "axios";
 import { IPlayer, IPlayerData } from '../interface/index';
-import { URL } from '../const/url'
 import { Player } from "../model/Player";
 
 class PalyerState {
-    player: null | IPlayer = null;
-    players: null | IPlayer[] = null;
+    playerName: string | null = null;
+    players: IPlayer[] = [];
 
     constructor() {
         makeAutoObservable(this)
     }
 
-    async setPlayer(playerName: string, sessionId: string) {
-        const dataPlayer = await axios.post<IPlayerData>(URL + "/sessions/add-player", {
-            sessionId,
-            playerName,
-        })
-        this.player = new Player(dataPlayer.data)
+    setName(playerName: string) {
+        this.playerName = playerName;
     }
 
-    setPlayers(players: IPlayer[]) {}
+    setPlayers(playersData: IPlayerData[]) {
+        this.players = playersData.map(playerData => {
+            return new Player(playerData);
+        })
+    }
 }
 
 export default new PalyerState();

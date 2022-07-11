@@ -16,7 +16,7 @@ const Monopoly: FC = () => {
     	    sessionState.setSessionId(params.id);
         }
 		const field = new Field();
-        setInitState(field);
+        setInitState(field, sessionState.sessionId);
     }, [])
 
     return <div className='monopoly'>

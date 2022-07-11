@@ -1,13 +1,11 @@
-import { Colour } from "../enum/index";
-
 export interface IPlayerData {
     id: number,
     position: number,
     name: string,
     balance: number,
-    colour: Colour
+    colour: string
 }
 
 export interface IPlayer extends IPlayerData {
-    setPosition: (position: number) => void
+    setPosition: (position: number, playerName: string) => void
 }

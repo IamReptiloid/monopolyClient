@@ -1,10 +1,9 @@
 import { IPlayer, IPlayerData } from "../interface";
-import { Colour } from "../enum/index";
 
 export class Player implements IPlayer {
     readonly id: number; 
     readonly name: string;
-    readonly colour: Colour;
+    readonly colour: string;
     public balance: number;
     public position: number = 0;
     
@@ -16,5 +15,5 @@ export class Player implements IPlayer {
         this.position = data.position;
     }
 
-    setPosition (position: number) {};
+    setPosition (position: number, playerName: string) {};
 }

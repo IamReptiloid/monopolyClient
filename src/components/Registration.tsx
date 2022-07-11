@@ -1,25 +1,34 @@
 import React, {FC, useRef, useState} from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { createSession } from '../backend';
 import { createSessionId } from '../utils/createSessionId';
 import playerState from '../store/PlayerState';
 import sessionState from '../store/SessionState';
 import '../style/registration.scss';
+import { getColour } from '../utils/getColour';
 
 const Registration: FC = () => {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const history = useHistory();
     const [validated, setValidated] = useState<boolean>(false);
 
-    const createAsExpression = () => {
-        const namePlayer = inputRef.current?.value;
-        if (namePlayer) {
-            const sessionId = createSessionId();
-            sessionState.setSessionId(sessionId);
-            playerState.setPlayer(namePlayer, sessionId);
-            history.push(sessionId);
+    const createRoom = async (playerName: string) => {
+        const sessionId = createSessionId();
+        sessionState.setSessionId(sessionId);
+        const colour = getColour(playerState.players);
+        await createSession(sessionId, playerName, colour);
+        playerState.setName(playerName);
+        history.push(sessionId);
+    }
+
+    const submit = () => {
+        const playerName = inputRef.current?.value;
+        if (playerName) {
+            createRoom(playerName)
+        } else {
+            setValidated(true);
         }
-        setValidated(true);
     }
 
     return <div className='registration'>
@@ -34,7 +43,7 @@ const Registration: FC = () => {
                     Имя будет использоваться во время игры
                 </Form.Text>
             </Form.Group>
-            <Button onClick={createAsExpression} variant="primary">
+            <Button onClick={submit} variant="primary">
                 Создать сессию
             </Button>
         </Form>

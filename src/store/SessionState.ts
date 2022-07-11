@@ -12,10 +12,6 @@ class SessionState {
     setSessionId(id: string) {
         this.sessionId = id;
     }
-
-    setConnection() {
-        
-    }
 }
 
 export default new SessionState();
