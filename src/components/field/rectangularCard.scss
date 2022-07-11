@@ -1,0 +1,15 @@
+.rectangularCard {
+    height: 67px;
+    width: 124px;
+    background-color: white;
+    position: absolute;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    &__img {
+        height: 43px;
+        width: 77px;
+    }
+}

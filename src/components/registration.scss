@@ -1,0 +1,10 @@
+.registration {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+}
