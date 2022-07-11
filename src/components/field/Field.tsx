@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
-import fieldState from '../store/FieldState';
-import { ICell } from '../interface';
+import fieldState from '../../store/FieldState';
+import { ICell } from '../../interface';
 import SquareCard from './SquareCard';
 import RectangularCard from './RectangularCard';
-import '../style/field.scss';
+import './field.scss';
 import { observer } from 'mobx-react-lite';
 
 const Field: FC = observer(() => {

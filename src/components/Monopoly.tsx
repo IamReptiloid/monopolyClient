@@ -1,9 +1,14 @@
 import React, {FC, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { Field } from '../model/Field';
-import FieldComponent from './Field';
+import FieldComponent from './field/Field';
+import PlayerCards from './player/PlayeCards';
+import AddPlayer from './player/AddPlayer';
 import sessionState from '../store/SessionState';
+import playerState from '../store/PlayerState';
+
 import { setInitState } from '../utils/initApplication';
+import './monopoly.scss'
 
 interface iParams {
     id: string
@@ -20,6 +25,8 @@ const Monopoly: FC = () => {
     }, [])
 
     return <div className='monopoly'>
+        {playerState.playerName? '': <AddPlayer/>}
+        <PlayerCards/>
 		<FieldComponent/>
     </div>
 }

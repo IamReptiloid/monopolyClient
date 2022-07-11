@@ -5,7 +5,7 @@ import { createSession } from '../backend';
 import { createSessionId } from '../utils/createSessionId';
 import playerState from '../store/PlayerState';
 import sessionState from '../store/SessionState';
-import '../style/registration.scss';
+import './registration.scss';
 import { getColour } from '../utils/getColour';
 
 const Registration: FC = () => {

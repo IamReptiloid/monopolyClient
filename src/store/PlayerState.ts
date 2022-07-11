@@ -19,6 +19,10 @@ class PalyerState {
             return new Player(playerData);
         })
     }
+
+    addPlayer(player: IPlayerData) {
+        this.players.push(new Player(player))
+    }
 }
 
 export default new PalyerState();

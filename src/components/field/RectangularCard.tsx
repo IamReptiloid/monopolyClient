@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import { IPropsCardRectangular } from '../interface';
-import '../style/rectangularCard.scss';
+import { IPropsCardRectangular } from '../../interface';
+import './rectangularCard.scss';
 
 const RectangularCard: FC<IPropsCardRectangular> = ({image, position, transform}) => {
     return <div className='rectangularCard' style={{...position, transform: transform}}>

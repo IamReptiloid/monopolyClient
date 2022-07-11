@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { CompatClient } from '@stomp/stompjs'
 
 class SessionState {
-    sessionId: null | string = null;
+    sessionId: string = '';
     wsConnection: null | CompatClient = null;
 
     constructor() {
