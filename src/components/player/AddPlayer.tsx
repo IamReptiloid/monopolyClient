@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import sessionState from '../../store/SessionState';
+import playerState from '../../store/PlayerState';
 import { sendAddPlayer } from '../../backend';
 import './addPlayer.scss';
 
@@ -20,6 +21,7 @@ const AddPlayer: FC = () => {
                 playerName,
                 colour: "red"
             });
+            playerState.setNewName(playerName, sessionState.sessionId);
             setShow(false);
         } else {
             setValidated(true);

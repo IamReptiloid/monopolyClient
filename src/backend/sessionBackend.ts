@@ -1,6 +1,6 @@
 import axios from "axios";
 import { URL } from "../const/url";
-import { IInitialResponse } from "../interface";
+import { IInitialResponse } from "../interface/index";
 
 const API = '/api/v1/sessions/';
 

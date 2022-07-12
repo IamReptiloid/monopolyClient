@@ -10,7 +10,8 @@ class PalyerState {
         makeAutoObservable(this)
     }
 
-    setName(playerName: string) {
+    setNewName(playerName: string, sessionId: string) {
+        localStorage.setItem(sessionId, playerName)
         this.playerName = playerName;
     }
 

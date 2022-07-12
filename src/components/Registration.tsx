@@ -18,7 +18,7 @@ const Registration: FC = () => {
         sessionState.setSessionId(sessionId);
         const colour = getColour(playerState.players);
         await createSession(sessionId, playerName, colour);
-        playerState.setName(playerName);
+        playerState.setNewName(playerName, sessionId);
         history.push(sessionId);
     }
 

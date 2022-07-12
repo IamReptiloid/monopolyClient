@@ -6,7 +6,7 @@ import PlayerCards from './player/PlayeCards';
 import AddPlayer from './player/AddPlayer';
 import sessionState from '../store/SessionState';
 import playerState from '../store/PlayerState';
-
+import { observer } from 'mobx-react-lite';
 import { setInitState } from '../utils/initApplication';
 import './monopoly.scss'
 
@@ -14,7 +14,7 @@ interface iParams {
     id: string
 }
 
-const Monopoly: FC = () => {
+const Monopoly: FC = observer(() => {
 	const params = useParams<iParams>();
     useEffect(() => {
         if(!sessionState.sessionId) {
@@ -29,6 +29,6 @@ const Monopoly: FC = () => {
         <PlayerCards/>
 		<FieldComponent/>
     </div>
-}
+})
 
 export default Monopoly
