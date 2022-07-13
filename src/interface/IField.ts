@@ -11,7 +11,8 @@ export interface ICoords {
 
 export interface ICell extends ICard {
     coords: ICoords
-    transform: string //todo?
+    isRotate: boolean,
+    isTop: boolean
 }
 
 export interface IField {

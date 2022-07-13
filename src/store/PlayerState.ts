@@ -24,6 +24,10 @@ class PalyerState {
     addPlayer(player: IPlayerData) {
         this.players.push(new Player(player))
     }
+
+    get isAdd() {
+        return this.players.length < 4;
+    }
 }
 
 export default new PalyerState();

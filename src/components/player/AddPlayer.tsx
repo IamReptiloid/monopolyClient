@@ -1,4 +1,4 @@
-import React, { useState, useRef, FC } from 'react';
+import React, { useState, useRef, FC, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -6,12 +6,17 @@ import sessionState from '../../store/SessionState';
 import playerState from '../../store/PlayerState';
 import { sendAddPlayer } from '../../backend';
 import './addPlayer.scss';
+import { observer } from 'mobx-react-lite';
 
 
-const AddPlayer: FC = () => {
+const AddPlayer: FC = observer(() => {
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(playerState.isAdd);
     const [validated, setValidated] = useState<boolean>(false);
+
+	useEffect(() => {
+		setShow(playerState.isAdd)
+	})
 
     const handleClose = () => {
         const playerName = inputRef.current?.value;
@@ -53,6 +58,6 @@ const AddPlayer: FC = () => {
           </Modal>
         </>
       );
-}
+})
 
 export default AddPlayer;

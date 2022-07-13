@@ -10,7 +10,7 @@ const Field: FC = observer(() => {
     return <div className='field'>
         {fieldState.performance && fieldState.performance.border.map((card: ICell, i: number): React.ReactNode => { 
             const result =  i % 10 
-                ?<RectangularCard transform={card.transform} key={card.id} image={card.image} position={card.coords}/> 
+                ?<RectangularCard isTop={card.isTop} isRotate={card.isRotate} key={card.id} image={card.image} position={card.coords}/> 
                 :<SquareCard key={card.id} image={card.image} position={card.coords}/>
             return result;
         }) }

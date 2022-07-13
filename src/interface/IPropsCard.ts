@@ -9,5 +9,6 @@ export interface IPropsCard {
 }
 
 export interface IPropsCardRectangular extends IPropsCard {
-    transform: string
+    isRotate: boolean,
+    isTop: boolean
 }

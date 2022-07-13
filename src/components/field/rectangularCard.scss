@@ -12,4 +12,13 @@
         height: 43px;
         width: 77px;
     }
+    &__rotate {
+        &_top {
+            transform: translateX(-24%) translateY(42%) rotate(90deg);
+        }
+    
+        &_bottom {
+            transform: translateX(23%) translateY(42%) rotate(90deg);
+        }
+    }
 }

@@ -22,7 +22,8 @@ export class Field implements IField {
                 image: card.image,
                 id: card.id,
                 type: card.type,
-                transform: isTopOrBottomSide ? 'rotate(90deg)' : ''
+                isRotate: isTopOrBottomSide,
+                isTop: this.isTop(numberCell)
             })
         })
     }
@@ -80,9 +81,9 @@ export class Field implements IField {
         let left = 0;
 
         return (numberCell: number): ICoords => {
-            let result = {// TODO refactoring
-                top: this.isTopOrBottomSide(numberCell)? top + 29: top,
-                left: this.isTopOrBottomSide(numberCell)? numberCell < 10? left - 29: left + 29: left
+            let result = {
+                top: top,
+                left: left
             };
             [top, left] = this.changeСoordinates(numberCell, top, left);
             return result;
