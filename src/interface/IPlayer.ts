@@ -3,7 +3,8 @@ export interface IPlayerData {
     position: number,
     name: string,
     balance: number,
-    colour: string
+    colour: string,
+    role: string
 }
 
 export interface IPlayer extends IPlayerData {

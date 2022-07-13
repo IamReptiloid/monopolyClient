@@ -1,6 +1,6 @@
 .rectangularCard {
-    height: 67px;
-    width: 124px;
+    height: 40px;
+    width: 62px;
     background-color: white;
     position: absolute;
     border: 1px solid #000;
@@ -9,16 +9,16 @@
     justify-content: center;
     border-radius: 5px;
     &__img {
-        height: 43px;
-        width: 77px;
+        height: 21px;
+        width: 36px;
     }
     &__rotate {
         &_top {
-            transform: translateX(-24%) translateY(42%) rotate(90deg);
+            transform: translateX(-18%) translateY(28%) rotate(90deg);
         }
     
         &_bottom {
-            transform: translateX(23%) translateY(42%) rotate(90deg);
+            transform: translateX(18%) translateY(28%) rotate(90deg);
         }
     }
 }

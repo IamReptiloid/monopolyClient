@@ -1,5 +1,7 @@
 .field {
-    position: relative;
-    width: 881px;
-    height: 881px;
+    height: 484px;
+    width: 484px;
+    &__container {
+        position: relative;
+    }
 }

@@ -31,7 +31,9 @@ const Registration: FC = () => {
         }
     }
 
-    return <div className='registration'>
+    return <>
+        <h1 className=''>It's a new game, man!</h1>
+        <div className='registration'>
         <Form className='registration__form'>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Имя</Form.Label>
@@ -48,6 +50,8 @@ const Registration: FC = () => {
             </Button>
         </Form>
     </div>
+</>
+    
 }
 
 export default Registration;

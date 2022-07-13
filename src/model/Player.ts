@@ -6,6 +6,7 @@ export class Player implements IPlayer {
     readonly colour: string;
     public balance: number;
     public position: number = 0;
+    public role: string;
     
     constructor(data: IPlayerData) {
         this.id = data.id;
@@ -13,6 +14,7 @@ export class Player implements IPlayer {
         this.colour = data.colour;
         this.name = data.name;
         this.position = data.position;
+        this.role = data.role
     }
 
     setPosition (position: number, playerName: string) {};

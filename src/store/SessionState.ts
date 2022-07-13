@@ -3,7 +3,7 @@ import { CompatClient } from '@stomp/stompjs'
 
 class SessionState {
     sessionId: string = '';
-    wsConnection: null | CompatClient = null;
+    currentPlayer: string = '';
 
     constructor() {
         makeAutoObservable(this);

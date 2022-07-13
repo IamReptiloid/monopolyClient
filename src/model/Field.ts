@@ -50,27 +50,27 @@ export class Field implements IField {
 
     private changeСoordinates(numberCell: number, top: number, left: number): number[] {
         if(numberCell === 0) { 
-            left += 124;
+            left += 62;
         }
         if (10 === numberCell) {
-            top += 124;
+            top += 62;
         }
         if(20 === numberCell) {
-            left -= 124;
+            left -= 62;
         }
         
         if(numberCell !== 0 && numberCell < 10) {
-            left += 66;
+            left += 40;
         }
         if(20 < numberCell && numberCell < 30) {
-            left -= 66;
+            left -= 40;
         }
         if(10 < numberCell && numberCell < 20) {
-            top += 67;
+            top += 40;
         }
 
         if(30 <= numberCell && numberCell < 40) {
-            top -= 67;
+            top -= 40;
         }
 
         return [top, left];

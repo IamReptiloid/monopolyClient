@@ -1,1 +1,1 @@
-export * from './IAddPlayerRequest';
+export * from './IWSReuest';
