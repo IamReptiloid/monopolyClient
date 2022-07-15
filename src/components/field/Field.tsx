@@ -12,11 +12,22 @@ import Token from '../player/Token';
 const Field: FC = observer(() => {
     return <div className='field'>
         <RollDice/>
+        
         {playerState.players.map(player => <Token key={player.id} player={player} coords={player.coords}/>)}
         <div className='field__container'>
             {fieldState.performance && fieldState.performance.border.map((card: ICell, i: number): React.ReactNode => { 
                 const result =  i % 10 
-                    ?<RectangularCard id={card.id} isTop={card.isTop} isRotate={card.isRotate} key={card.id} image={card.image} position={card.coords}/> 
+                    ?<RectangularCard 
+                        id={card.id} 
+                        isTop={card.isTop} 
+                        isRotate={card.isRotate} 
+                        key={card.id} 
+                        image={card.image} 
+                        position={card.coords} 
+                        isRight={card.isRight} 
+                        isBottom={card.isBottom} 
+                        isLeft={card.isLeft}
+                    /> 
                     :<SquareCard key={card.id} image={card.image} position={card.coords}/>
                 return result;
             }) }

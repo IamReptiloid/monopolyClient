@@ -15,7 +15,10 @@ export interface ICell extends ICard {
     coords: ICoords
     movementCoordinates: [number, number]
     isRotate: boolean,
-    isTop: boolean
+    isTop: boolean,
+    isBottom: boolean
+    isRight: boolean,
+    isLeft: boolean,
     initMovementCoordinates: () => void
 }
 

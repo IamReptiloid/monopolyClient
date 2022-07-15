@@ -11,13 +11,47 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 40px 26px;
+    &:hover {
+        transform: scale(1.1);
+        z-index: 10;
+        cursor: pointer;
+    }
     &__rotate {
         &_top {
             transform: translateX(-18%) translateY(28%) rotate(90deg);
+            &:hover {
+                transform: scale(1.1) translateX(-18%) translateY(28%) rotate(90deg);
+                z-index: 10;
+                cursor: pointer;
+            }
         }
     
         &_bottom {
             transform: translateX(18%) translateY(28%) rotate(90deg);
+            &:hover {
+                transform: scale(1.1) translateX(18%) translateY(28%) rotate(90deg);
+                z-index: 10;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__state {
+        top: 10px;
+        border-radius: 5px;
+        width: 40px;
+        border: 1px solid #000;
+        text-align: center;
+        font-size: 10px;
+        color: white;
+        position: absolute;
+        transform: rotate(-90deg);
+        &_topAndLeft{
+            left: -29px
+
+        }
+        &_bottomAndRight{
+            left: 49px
         }
     }
 }

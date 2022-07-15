@@ -19,9 +19,23 @@ export class Field implements IField {
                 card.type,
                 isTopOrBottomSide,
                 this.isTop(numberCell),
-                this.isBottom(numberCell)
+                this.isBottom(numberCell),
+                this.isRight(numberCell),
+                this.isLeft(numberCell)
             ))
         })
+    }
+
+    isRight(numberCell: number): boolean {
+        const numberSide = this.getNumberSide(numberCell);
+        const isRight = numberSide === 1 && numberCell % 10 !== 0;
+        return isRight;
+    }
+
+    isLeft(numberCell: number): boolean {
+        const numberSide = this.getNumberSide(numberCell);
+        const isLeft = numberSide === 3 && numberCell % 10 !== 0;
+        return isLeft;
     }
 
     private getNumberSide(numberCell: number): number {

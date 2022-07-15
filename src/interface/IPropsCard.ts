@@ -11,5 +11,8 @@ export interface IPropsCard {
 export interface IPropsCardRectangular extends IPropsCard {
     id: number,
     isRotate: boolean,
-    isTop: boolean
+    isTop: boolean,
+    isRight: boolean,
+    isBottom: boolean,
+    isLeft: boolean
 }

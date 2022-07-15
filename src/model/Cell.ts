@@ -9,7 +9,9 @@ export class Cell implements ICell {
         readonly type: string,
         readonly isRotate: boolean,
         readonly isTop: boolean,
-        readonly isBottom: boolean
+        readonly isBottom: boolean,
+        readonly isRight: boolean,
+        readonly isLeft: boolean
     ) {
         this.initMovementCoordinates()
     }
@@ -20,11 +22,11 @@ export class Cell implements ICell {
 
     initMovementCoordinates() {
         if(this.isTop){
-            this.movementCoordinates = [this.coords.left + 11, this.coords.top + 20]
+            this.movementCoordinates = [this.coords.left + 8, this.coords.top + 20]
         } else if(this.isBottom){
             this.movementCoordinates = [this.coords.left + 32, this.coords.top + 20]
         } else {
-            this.movementCoordinates = [this.coords.left + 20, this.coords.top + 11]
+            this.movementCoordinates = [this.coords.left + 20, this.coords.top + 8]
         }
         if(this.id % 10 === 1) {
             this.movementCoordinates = [this.coords.left + 20, this.coords.top + 20]
