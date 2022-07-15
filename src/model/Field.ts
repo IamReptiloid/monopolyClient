@@ -1,30 +1,26 @@
 import { IField, ICell, ICard, ICoords } from "../interface";
+import { Cell } from './Cell'
 
 type typeGetCoords = (numberCell: number) => ICoords;
 
 export class Field implements IField {
-    public border: ICell[] = [];
+    border: ICell[] = [];
 
     public init(cards: ICard[]) {
-
-        
-        this.initCell(cards);
-    }
-
-    private initCell(cards: ICard[]) {
         const getCoords: typeGetCoords = this.initCoords();
 
         cards.forEach((card: ICard, numberCell) => {
             const isTopOrBottomSide = this.isTopOrBottomSide(numberCell);
             const coords: ICoords = getCoords(numberCell);
-            this.border.push({
+            this.border.push(new Cell(
                 coords,
-                image: card.image,
-                id: card.id,
-                type: card.type,
-                isRotate: isTopOrBottomSide,
-                isTop: this.isTop(numberCell)
-            })
+                card.image,
+                card.id,
+                card.type,
+                isTopOrBottomSide,
+                this.isTop(numberCell),
+                this.isBottom(numberCell)
+            ))
         })
     }
 

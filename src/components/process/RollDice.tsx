@@ -16,7 +16,7 @@ const RollDice: FC = observer(() => {
         setShow(false)
     }
 
-    return <div className='rollDice' style={{display: show? '': 'none'}}>
+    return <div className='rollDice'>
         <div className="rollDice__header">Ваш ход!</div>
         <div className="rollDice__body">Вперед к новым победам</div>
         <Button style={{fontSize: '10px'}} onClick={roll}>Бросить кубик</Button>

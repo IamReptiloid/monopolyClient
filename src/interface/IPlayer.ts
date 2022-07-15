@@ -8,5 +8,6 @@ export interface IPlayerData {
 }
 
 export interface IPlayer extends IPlayerData {
-    setPosition: (position: number, playerName: string) => void
+    coords: [number, number],
+    setPosition: (position: number) => void
 }

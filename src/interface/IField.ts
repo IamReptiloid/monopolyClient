@@ -1,3 +1,5 @@
+import { IPlayer } from "./IPlayer"
+
 export interface ICard {
     id: number,
     image: string,
@@ -11,8 +13,10 @@ export interface ICoords {
 
 export interface ICell extends ICard {
     coords: ICoords
+    movementCoordinates: [number, number]
     isRotate: boolean,
     isTop: boolean
+    initMovementCoordinates: () => void
 }
 
 export interface IField {

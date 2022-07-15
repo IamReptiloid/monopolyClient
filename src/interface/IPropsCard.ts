@@ -9,6 +9,7 @@ export interface IPropsCard {
 }
 
 export interface IPropsCardRectangular extends IPropsCard {
+    id: number,
     isRotate: boolean,
     isTop: boolean
 }

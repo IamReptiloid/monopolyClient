@@ -18,7 +18,7 @@ interface iParams {
 
 const Monopoly: FC = observer(() => {
 	const params = useParams<iParams>();
-    const [size, setSize] = useState<number>(getScale())
+    const [size, setSize] = useState<number>(1)
     useEffect(() => {
         if(!sessionState.sessionId) {
     	    sessionState.setSessionId(params.id);
@@ -26,9 +26,9 @@ const Monopoly: FC = observer(() => {
 		const field = new Field();
         setInitState(field, sessionState.sessionId);
         // TODO
-        window.onresize = () => {
-            setSize(getScale())
-        }
+        // window.onresize = () => {
+        //     setSize(getScale())
+        // }
     }, [])
 
     return <div className='monopoly' style={{transform: `scale(${size})`}}>

@@ -8,10 +8,9 @@
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    &__img {
-        height: 21px;
-        width: 36px;
-    }
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px 26px;
     &__rotate {
         &_top {
             transform: translateX(-18%) translateY(28%) rotate(90deg);

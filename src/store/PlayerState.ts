@@ -25,6 +25,17 @@ class PalyerState {
         this.players.push(new Player(player))
     }
 
+    setCoords(playerName: string, coords: [number, number], position: number) {
+        //todo go to sreet
+        this.players = this.players.map(player => {
+            if(player.name === playerName) {
+                player.coords = coords;
+            }
+            return player;
+        })
+        
+    }
+
     get isAdd() {
         return this.players.length < 4;
     }

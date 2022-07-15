@@ -5,8 +5,9 @@ export class Player implements IPlayer {
     readonly name: string;
     readonly colour: string;
     public balance: number;
-    public position: number = 0;
+    public position: number;
     public role: string;
+    public coords: [number, number] = [20, 20]
     
     constructor(data: IPlayerData) {
         this.id = data.id;
@@ -17,5 +18,5 @@ export class Player implements IPlayer {
         this.role = data.role
     }
 
-    setPosition (position: number, playerName: string) {};
+    setPosition (position: number) {};
 }

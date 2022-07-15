@@ -1,8 +1,10 @@
 import { Stomp, CompatClient, FrameImpl, IFrame } from "@stomp/stompjs";
 import { URL } from '../const/url';
 import playerState from "../store/PlayerState";
+import fieldState from "../store/FieldState";
 import { IAddPlayerRequest, IRollDiceRequest } from "../interface/request";
 import SockJS from "sockjs-client";
+import { IRollDiceResponse } from "../interface";
 
 let stompClient: CompatClient | null = null;
 
@@ -33,7 +35,11 @@ function subscribeAddPlayer(sessionId: string) {
 function subscribeRollDice(sessionId: string) {
     if(stompClient) {
         stompClient.subscribe('/topic/roll-dice/' + sessionId, (data: IFrame) => {
-            console.log(JSON.parse(data.body)); 
+            const response: IRollDiceResponse =  JSON.parse(data.body)
+            const coords = fieldState.performance?.border[response.player.position].movementCoordinates;
+            if(coords) {
+                playerState.setCoords(response.player.playerName, coords, response.player.position)
+            }
         })
     }
 }

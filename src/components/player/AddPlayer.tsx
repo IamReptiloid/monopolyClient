@@ -7,6 +7,7 @@ import playerState from '../../store/PlayerState';
 import { sendAddPlayer } from '../../backend';
 import './addPlayer.scss';
 import { observer } from 'mobx-react-lite';
+import { getColour } from '../../utils/getColour';
 
 
 const AddPlayer: FC = observer(() => {
@@ -24,7 +25,7 @@ const AddPlayer: FC = observer(() => {
             sendAddPlayer({
                 sessionId: sessionState.sessionId,
                 playerName,
-                colour: "red"
+                colour: getColour(playerState.players)
             });
             playerState.setNewName(playerName, sessionState.sessionId);
             setShow(false);
