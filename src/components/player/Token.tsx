@@ -9,9 +9,9 @@ interface IProps {
 
 const Token: FC<IProps> = observer((props: IProps) => {
     return <div 
-    className='token' 
-    style={{backgroundColor: props.player.colour, transform: `translate(${props.coords[0]}px, ${props.coords[1]}px)`, border: `1px solid ${props.player.colour}`}}
-    >   
+        className='token' 
+        style={{backgroundColor: props.player.colour, transform: `translate(${props.coords[0]}px, ${props.coords[1]}px)`, border: `1px solid ${props.player.colour}`}}
+        >   
     </div>
 }) 
 

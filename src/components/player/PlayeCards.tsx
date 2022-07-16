@@ -7,7 +7,7 @@ import './playerCards.scss';
 const PlayerCards: FC = observer(() => {
     return <div className='playerCards'>
         {playerState.players.map(player => {
-            return <PlayerCard  player={player}/>
+            return <PlayerCard key={player.id} player={player}/>
         })}
     </div>
 })

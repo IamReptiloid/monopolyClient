@@ -1,9 +1,9 @@
 import { makeAutoObservable } from "mobx";
-import { ICard, ICardState, IField } from '../interface';
+import { ICard, ICardsStates, IField } from '../interface';
 
 class FieldState {
     performance: null | IField = null;
-    cardStates: ICardState[] = [];
+    cardStates: ICardsStates = {};
 
     constructor() {
         makeAutoObservable(this);

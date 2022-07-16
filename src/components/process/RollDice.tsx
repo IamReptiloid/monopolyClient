@@ -6,14 +6,17 @@ import playerState from "../../store/PlayerState"; //todo
 import { sendRollDice } from '../../backend';
 import './rollDice.scss'
 
-const RollDice: FC = observer(() => {
-    const [show, setShow] = useState(true);
+interface IProps {
+    setShow: () => void
+}
 
+const RollDice: FC<IProps> = observer((props) => {
     const roll = () => {
         sendRollDice({
             sessionId: sessionState.sessionId, 
-            playerName: playerState.playerName || ''});
-        setShow(false)
+            playerName: playerState.playerName || ''
+        });
+        props.setShow();
     }
 
     return <div className='rollDice'>

@@ -9,5 +9,5 @@ export interface IPlayerData {
 
 export interface IPlayer extends IPlayerData {
     coords: [number, number],
-    setPosition: (position: number) => void
+    setBalance: (balance: number) => void
 }

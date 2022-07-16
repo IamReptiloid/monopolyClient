@@ -8,6 +8,7 @@ export async function setInitState(field: IField, sessionId: string) {
     setConnect(sessionId);
     const initialState: IInitialResponse = await getInitState(sessionId);
     playerState.playerName = await localStorage.getItem(sessionId);
+    playerState.currentPlayer = playerState.playerName;
     await fieldState.initPerformance(field, initialState.cards);
     playerState.setPlayers(initialState.players);
     fieldState.cardStates = initialState.cardStates;

@@ -18,5 +18,7 @@ export class Player implements IPlayer {
         this.role = data.role
     }
 
-    setPosition (position: number) {};
+    setBalance(balance: number) {
+        this.balance = balance;
+    }
 }

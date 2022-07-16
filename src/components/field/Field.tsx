@@ -5,14 +5,13 @@ import SquareCard from './SquareCard';
 import RectangularCard from './RectangularCard';
 import './field.scss';
 import { observer } from 'mobx-react-lite';
-import RollDice from '../process/RollDice';
+import Event from '../process/Event';
 import playerState from '../../store/PlayerState';
 import Token from '../player/Token';
 
 const Field: FC = observer(() => {
     return <div className='field'>
-        <RollDice/>
-        
+        {playerState.currentPlayer === playerState.playerName? <Event/>: ''}
         {playerState.players.map(player => <Token key={player.id} player={player} coords={player.coords}/>)}
         <div className='field__container'>
             {fieldState.performance && fieldState.performance.border.map((card: ICell, i: number): React.ReactNode => { 

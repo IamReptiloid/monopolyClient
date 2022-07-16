@@ -4,6 +4,7 @@ import { Player } from "../model/Player";
 
 class PalyerState {
     playerName: string | null = null;
+    currentPlayer: string | null = null;
     players: IPlayer[] = [];
 
     constructor() {
@@ -30,10 +31,19 @@ class PalyerState {
         this.players = this.players.map(player => {
             if(player.name === playerName) {
                 player.coords = coords;
+                player.position = position;
             }
             return player;
+        })   
+    }
+
+    setNewBalance(playerName: string, balance: number) {
+        this.players = this.players.map(el => {
+            if(el.name === playerName) {
+                el.setBalance(balance);
+            }
+            return el;
         })
-        
     }
 
     get isAdd() {
