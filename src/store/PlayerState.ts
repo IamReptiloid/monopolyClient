@@ -45,6 +45,10 @@ class PalyerState {
         })
     }
 
+    getPlayer(playerName: string) {
+        return this.players.find(el => el.name === playerName);
+    }
+
     get player() {
         return this.players.find(el => el.name === this.playerName);
     }

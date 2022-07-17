@@ -4,8 +4,9 @@ import playerState from "../store/PlayerState";
 import fieldState from "../store/FieldState";
 import { IAddPlayerRequest, IRollDiceRequest } from "../interface";
 import SockJS from "sockjs-client";
-import { IRollDiceResponse, IBuyCardResponse, IStartGameResponse } from "../interface";
+import { IRollDiceResponse, IBuyCardResponse, IStartGameResponse, IMessage } from "../interface";
 import sessionState from "../store/SessionState";
+import chatState from "../store/ChatState";
 
 let stompClient: CompatClient | null = null;
 
@@ -24,6 +25,7 @@ function subscribes(sessionId: string) {
             subscribeBuyCard(sessionId);
             subscribeMoveTransition(sessionId);
             subscribeStartGame(sessionId);
+            subscribeChat(sessionId);
         });
     }
 }
@@ -74,7 +76,15 @@ function subscribeMoveTransition(sessionId: string) {
         stompClient.subscribe('/topic/move-transition/' + sessionId, (response: IFrame) => {
             const data: {currentPlayer: string} = JSON.parse(response.body);
             sessionState.currentPlayer = data.currentPlayer
-            console.log('sessionState.currentPlayer ', data.currentPlayer)
+        })
+    }
+}
+
+function subscribeChat(sessionId: string) {
+    if(stompClient) {
+        stompClient.subscribe('/topic/chat/' + sessionId, (response: IFrame) => {
+            const data: IMessage = JSON.parse(response.body)
+            chatState.chatHistory.push(data)
         })
     }
 }
@@ -111,5 +121,15 @@ export function sendAddPlayer(data: IAddPlayerRequest) {
 export function sendMoveTransition(sessionId: string, playerName: string) {
     if(stompClient) {
         stompClient.send('/app/sessions/move-transition', {}, JSON.stringify({sessionId, playerName}))
+    }
+}
+
+export function sendMessage(sessionId: string, playerName: string, message: string) {
+    if(stompClient) {
+        stompClient.send('/app/chat/common', {}, JSON.stringify({
+            sessionId, 
+            sender: playerName, 
+            message
+        }))
     }
 }

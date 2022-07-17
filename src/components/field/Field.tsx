@@ -11,9 +11,11 @@ import Token from '../player/Token';
 import sessionState from '../../store/SessionState';
 import { Role } from '../../enum';
 import StartGame from '../process/StartGame';
+import Chat from '../chat/Chat';
 
 const Field: FC = observer(() => {
     return <div className='field'>
+        <Chat/>
         {!sessionState.isStart && playerState.player?.role === Role.Admin? <StartGame/>: ''}
         {sessionState.currentPlayer === playerState.playerName && sessionState.isStart? <Event/>: ''}
         {playerState.players.map(player => <Token key={player.id} player={player} coords={player.coords}/>)}

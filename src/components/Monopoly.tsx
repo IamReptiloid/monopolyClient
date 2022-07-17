@@ -4,7 +4,6 @@ import { Field } from '../model/Field';
 import FieldComponent from './field/Field';
 import PlayerCards from './player/PlayeCards';
 import AddPlayer from './player/AddPlayer';
-import RollDice from './process/RollDice';
 import sessionState from '../store/SessionState';
 import playerState from '../store/PlayerState';
 import { observer } from 'mobx-react-lite';

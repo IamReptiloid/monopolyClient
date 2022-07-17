@@ -1,11 +1,11 @@
 .playerCard {
-    background-color: #14181b;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px;
+    border-radius: 10px;
     &__img {
         border-radius: 50%;
         height: 50px;
