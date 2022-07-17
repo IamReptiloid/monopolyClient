@@ -4,7 +4,6 @@ import { Player } from "../model/Player";
 
 class PalyerState {
     playerName: string | null = null;
-    currentPlayer: string | null = null;
     players: IPlayer[] = [];
 
     constructor() {
@@ -44,6 +43,10 @@ class PalyerState {
             }
             return el;
         })
+    }
+
+    get player() {
+        return this.players.find(el => el.name === this.playerName);
     }
 
     get isAdd() {

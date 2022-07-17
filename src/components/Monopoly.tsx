@@ -32,7 +32,7 @@ const Monopoly: FC = observer(() => {
     }, [])
 
     return <div className='monopoly' style={{transform: `scale(${size})`}}>
-        {playerState.playerName? '': <AddPlayer/>}
+        {playerState.playerName || sessionState.isStart? '': <AddPlayer/>}
         <PlayerCards/>
 		<FieldComponent/>
     </div>

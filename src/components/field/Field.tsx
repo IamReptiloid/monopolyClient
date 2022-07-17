@@ -8,10 +8,14 @@ import { observer } from 'mobx-react-lite';
 import Event from '../process/Event';
 import playerState from '../../store/PlayerState';
 import Token from '../player/Token';
+import sessionState from '../../store/SessionState';
+import { Role } from '../../enum';
+import StartGame from '../process/StartGame';
 
 const Field: FC = observer(() => {
     return <div className='field'>
-        {playerState.currentPlayer === playerState.playerName? <Event/>: ''}
+        {!sessionState.isStart && playerState.player?.role === Role.Admin? <StartGame/>: ''}
+        {sessionState.currentPlayer === playerState.playerName && sessionState.isStart? <Event/>: ''}
         {playerState.players.map(player => <Token key={player.id} player={player} coords={player.coords}/>)}
         <div className='field__container'>
             {fieldState.performance && fieldState.performance.border.map((card: ICell, i: number): React.ReactNode => { 

@@ -18,3 +18,8 @@ export interface IBuyCardResponse {
         [key: string]: ICardState
     }
 }
+
+export interface IStartGameResponse {
+    sessionState: string,
+    currentPlayer: string
+}

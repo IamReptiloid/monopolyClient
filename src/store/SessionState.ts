@@ -1,9 +1,10 @@
 import { makeAutoObservable } from "mobx";
-import { CompatClient } from '@stomp/stompjs'
+import { StatusGame } from '../enum'
 
 class SessionState {
-    sessionId: string = '';
-    currentPlayer: string = '';
+    sessionId = '';
+    currentPlayer = '';
+    state = ''
 
     constructor() {
         makeAutoObservable(this);
@@ -11,6 +12,10 @@ class SessionState {
 
     setSessionId(id: string) {
         this.sessionId = id;
+    }
+
+    get isStart(): boolean {
+        return this.state === StatusGame.InProgress;
     }
 }
 

@@ -4,7 +4,8 @@ import playerState from "../store/PlayerState";
 import fieldState from "../store/FieldState";
 import { IAddPlayerRequest, IRollDiceRequest } from "../interface";
 import SockJS from "sockjs-client";
-import { IRollDiceResponse, IBuyCardResponse } from "../interface";
+import { IRollDiceResponse, IBuyCardResponse, IStartGameResponse } from "../interface";
+import sessionState from "../store/SessionState";
 
 let stompClient: CompatClient | null = null;
 
@@ -21,6 +22,8 @@ function subscribes(sessionId: string) {
             subscribeAddPlayer(sessionId);
             subscribeRollDice(sessionId);
             subscribeBuyCard(sessionId);
+            subscribeMoveTransition(sessionId);
+            subscribeStartGame(sessionId);
         });
     }
 }
@@ -29,6 +32,16 @@ function subscribeAddPlayer(sessionId: string) {
     if(stompClient) {
         stompClient.subscribe('/topic/add-player/' + sessionId, (data: IFrame) => {
             playerState.addPlayer(JSON.parse(data.body)); 
+        })
+    }
+}
+
+function subscribeStartGame(sessionId: string) {
+    if(stompClient) {
+        stompClient.subscribe('/topic/start-game/' + sessionId,  (response: IFrame) => {
+            const data: IStartGameResponse = JSON.parse(response.body);
+            sessionState.state = data.sessionState;
+            sessionState.currentPlayer = data.currentPlayer;
         })
     }
 }
@@ -56,6 +69,16 @@ function subscribeBuyCard(sessionId: string) {
     }
 }
 
+function subscribeMoveTransition(sessionId: string) {
+    if(stompClient) {
+        stompClient.subscribe('/topic/move-transition/' + sessionId, (response: IFrame) => {
+            const data: {currentPlayer: string} = JSON.parse(response.body);
+            sessionState.currentPlayer = data.currentPlayer
+            console.log('sessionState.currentPlayer ', data.currentPlayer)
+        })
+    }
+}
+
 export function sendBuyCard(sessionId: string,  playerName: string, cardId: number) {
     const data = {
         sessionId,
@@ -64,6 +87,12 @@ export function sendBuyCard(sessionId: string,  playerName: string, cardId: numb
     }
     if(stompClient) {
         stompClient.send('/app/sessions/buy-card', {}, JSON.stringify(data))
+    }
+}
+
+export function sendStartGame (sessionId: string, playerName: string) {
+    if(stompClient) {
+        stompClient.send('/app/sessions/start-game', {}, JSON.stringify({sessionId, playerName}))
     }
 }
 
@@ -76,5 +105,11 @@ export function sendRollDice(data: IRollDiceRequest) {
 export function sendAddPlayer(data: IAddPlayerRequest) {
     if(stompClient) {
         stompClient.send('/app/sessions/add-player', {}, JSON.stringify(data))
+    }
+}
+
+export function sendMoveTransition(sessionId: string, playerName: string) {
+    if(stompClient) {
+        stompClient.send('/app/sessions/move-transition', {}, JSON.stringify({sessionId, playerName}))
     }
 }

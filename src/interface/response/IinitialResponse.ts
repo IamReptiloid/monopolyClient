@@ -5,5 +5,5 @@ export interface IInitialResponse {
     cards: ICard[],
     state: string, //todo
     cardStates: ICardsStates
-    // currentPlayer: string
+    currentPlayer: string
 }
