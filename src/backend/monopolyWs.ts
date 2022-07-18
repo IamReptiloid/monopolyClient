@@ -7,6 +7,7 @@ import SockJS from "sockjs-client";
 import { IRollDiceResponse, IBuyCardResponse, IStartGameResponse, IMessage } from "../interface";
 import sessionState from "../store/SessionState";
 import chatState from "../store/ChatState";
+import { MoveStatus } from "../enum";
 
 let stompClient: CompatClient | null = null;
 
@@ -26,6 +27,7 @@ function subscribes(sessionId: string) {
             subscribeMoveTransition(sessionId);
             subscribeStartGame(sessionId);
             subscribeChat(sessionId);
+            subscribeMoveStatus(sessionId);
         });
     }
 }
@@ -60,6 +62,16 @@ function subscribeRollDice(sessionId: string) {
     }
 }
 
+function subscribeMoveStatus(sessionId: string) {
+    if(stompClient) {
+        stompClient.subscribe('/topic/move-status/' + sessionId, (response: IFrame) => {
+            const data: {moveStatus: string} = JSON.parse(response.body);
+            sessionState.moveStatus = data.moveStatus;
+            console.log('sdf', data);
+        })
+    }
+}
+
 function subscribeBuyCard(sessionId: string) {
     if(stompClient) {
         stompClient.subscribe('/topic/buy-card/' + sessionId, (response: IFrame) => {
@@ -76,6 +88,7 @@ function subscribeMoveTransition(sessionId: string) {
         stompClient.subscribe('/topic/move-transition/' + sessionId, (response: IFrame) => {
             const data: {currentPlayer: string} = JSON.parse(response.body);
             sessionState.currentPlayer = data.currentPlayer
+
         })
     }
 }
@@ -103,6 +116,12 @@ export function sendBuyCard(sessionId: string,  playerName: string, cardId: numb
 export function sendStartGame (sessionId: string, playerName: string) {
     if(stompClient) {
         stompClient.send('/app/sessions/start-game', {}, JSON.stringify({sessionId, playerName}))
+    }
+}
+
+export function sendNewMoveStatus(sessionId: string) {
+    if(stompClient) {
+        stompClient.send('/app/sessions/move-status', {}, JSON.stringify({sessionId}))
     }
 }
 

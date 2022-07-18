@@ -6,6 +6,7 @@ export interface IInitialResponse {
     cards: ICard[],
     state: string, //todo
     cardStates: ICardsStates
-    currentPlayer: string,
+    currentPlayer: string | null,
     chatHistory: IMessage[]
+    moveStatus: string | null
 }

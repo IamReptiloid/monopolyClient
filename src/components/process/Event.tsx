@@ -4,10 +4,28 @@ import playerState from '../../store/PlayerState';
 import BuyingCard from './BuyingCard';
 import RollDice from './RollDice';
 import fieldState from '../../store/FieldState';
+import sessionState from '../../store/SessionState';
+import { MoveStatus } from '../../enum';
+import { sendNewMoveStatus } from '../../backend';
 
 const Event: FC = observer(() => {
-    const [isRoll, setRoll] = useState(false);
+    const [isRoll, setRoll] = useState(true);
     const [isBuy, setBuy] = useState(false)
+
+    useEffect(() => {
+        if(sessionState.moveStatus === MoveStatus.Start) {
+            setRoll(true);
+        } else if(sessionState.moveStatus === MoveStatus.Middle) {
+            const player = playerState.players.find(el => el.name === playerState.playerName);
+            if(player && fieldState.performance) {
+                const card = fieldState.performance.border[player.position];
+                if (card.type === 'COMPANY' && !fieldState.cardStates[card.id].ownerName) {
+                    setRoll(false);
+                    setBuy(true);
+                }
+            }
+        }
+    }, [])
 
     function setShowRoll() {
         setRoll(!isRoll);
@@ -26,7 +44,7 @@ const Event: FC = observer(() => {
         setBuy(!isBuy);
     }
     return <>
-        {isRoll? '': <RollDice setShow={setShowRoll}/>}
+        {isRoll? <RollDice setShow={setShowRoll}/>: ''}
         {isBuy? <BuyingCard setShow={setShowBuy}/>: ''}
     </>
 })

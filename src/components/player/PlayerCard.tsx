@@ -7,7 +7,7 @@ const logo =  require("../../assets/pl.jpg")
 
 interface IProps {
     player: IPlayer
-    currentPlayer: string
+    currentPlayer: string | null
 }
 
 const PlayerCard: FC<IProps> = (props: IProps) => {

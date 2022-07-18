@@ -1,14 +1,18 @@
 import React, {FC, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import './process.scss'
-import { sendStartGame } from '../../backend';
+import { sendNewMoveStatus, sendStartGame } from '../../backend';
 import sessionState from '../../store/SessionState';
 import playerState from '../../store/PlayerState';
+import { MoveStatus } from '../../enum';
 
 
 const StartGame: FC = () => {
     function start() {
         if(playerState.playerName) {
+            // sendNewMoveStatus(sessionState.sessionId);
+            sessionState.moveStatus = MoveStatus.Start;
+            console.log(sessionState.moveStatus)
             sendStartGame(sessionState.sessionId, playerState.playerName);
         }
     }

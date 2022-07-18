@@ -28,7 +28,7 @@ const Chat: FC = observer(() => {
         <div className="crutch"></div>
         <SimpleBar className="chat__body">
             <div className="chat__body">
-                {chatState.chatHistory.map(el => <Message playerName={el.playerName} message={el.message}/>)}
+                {chatState.chatHistory.map((el, i) => <Message key={i} playerName={el.playerName} message={el.message}/>)}
             </div>
         </SimpleBar>
             {playerState.playerName?<div className="chat__input"> <input ref={ref} type="text" placeholder='Введите сообщение' onKeyDown={send}/> </div>: ''}

@@ -3,7 +3,8 @@ import { StatusGame } from '../enum'
 
 class SessionState {
     sessionId = '';
-    currentPlayer = '';
+    currentPlayer: string | null = null;
+    moveStatus: string | null = null;
     state = ''
 
     constructor() {
