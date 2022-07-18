@@ -2,7 +2,7 @@ import { Stomp, CompatClient, FrameImpl, IFrame } from "@stomp/stompjs";
 import { URL } from '../const/url';
 import playerState from "../store/PlayerState";
 import fieldState from "../store/FieldState";
-import { IAddPlayerRequest, IRollDiceRequest } from "../interface";
+import { IAddPlayerRequest, IPayForCardResponse, IRollDiceRequest } from "../interface";
 import SockJS from "sockjs-client";
 import { IRollDiceResponse, IBuyCardResponse, IStartGameResponse, IMessage } from "../interface";
 import sessionState from "../store/SessionState";
@@ -28,6 +28,7 @@ function subscribes(sessionId: string) {
             subscribeStartGame(sessionId);
             subscribeChat(sessionId);
             subscribeMoveStatus(sessionId);
+            subscribePayForCard(sessionId);
         });
     }
 }
@@ -67,7 +68,17 @@ function subscribeMoveStatus(sessionId: string) {
         stompClient.subscribe('/topic/move-status/' + sessionId, (response: IFrame) => {
             const data: {moveStatus: string} = JSON.parse(response.body);
             sessionState.moveStatus = data.moveStatus;
-            console.log('sdf', data);
+            console.log('sdfgsdfgsdfsdfgsdfgsdgf', data);
+        })
+    }
+}
+
+function subscribePayForCard(sessionId: string) {
+    if(stompClient) {
+        stompClient.subscribe('/topic/pay-for-card/' + sessionId, (response: IFrame) => {
+            const data: IPayForCardResponse = JSON.parse(response.body);
+            playerState.setNewBalance(data.buyer.playerName, data.buyer.balance);
+            playerState.setNewBalance(data.owner.playerName, data.owner.balance);
         })
     }
 }
@@ -88,7 +99,6 @@ function subscribeMoveTransition(sessionId: string) {
         stompClient.subscribe('/topic/move-transition/' + sessionId, (response: IFrame) => {
             const data: {currentPlayer: string} = JSON.parse(response.body);
             sessionState.currentPlayer = data.currentPlayer
-
         })
     }
 }
@@ -150,5 +160,11 @@ export function sendMessage(sessionId: string, playerName: string, message: stri
             sender: playerName, 
             message
         }))
+    }
+}
+
+export function sendPayForCard(sessionId: string, playerName: string, cardId: number) {
+    if(stompClient) {
+        stompClient.send('/app/sessions/pay-for-card', {}, JSON.stringify({sessionId, playerName, cardId}))
     }
 }

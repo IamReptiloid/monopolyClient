@@ -23,3 +23,14 @@ export interface IStartGameResponse {
     sessionState: string,
     currentPlayer: string
 }
+
+export interface IPayForCardResponse {
+    buyer: {
+        balance: number,
+        playerName: string
+    }
+    owner: {
+        balance: number,
+        playerName: string
+    }
+}

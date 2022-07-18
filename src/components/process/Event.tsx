@@ -6,7 +6,7 @@ import RollDice from './RollDice';
 import fieldState from '../../store/FieldState';
 import sessionState from '../../store/SessionState';
 import { MoveStatus } from '../../enum';
-import { sendNewMoveStatus } from '../../backend';
+import { sendPayForCard, sendMoveTransition } from '../../backend';
 
 const Event: FC = observer(() => {
     const [isRoll, setRoll] = useState(true);
@@ -20,8 +20,8 @@ const Event: FC = observer(() => {
                 setRoll(false);
                 setBuy(true)
             } else if (card.type === 'COMPANY' && fieldState.cardStates[card.id].ownerName !== player.name) {
-                console.log(1111)
-            }
+                sendPayForCard(sessionState.sessionId, player.name, card.id);
+            } 
         }
     }
 

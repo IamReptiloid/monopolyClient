@@ -3,9 +3,10 @@ import React, {FC, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import fieldState from '../../store/FieldState';
 import playerState from '../../store/PlayerState';
-import { sendBuyCard, sendMoveTransition } from '../../backend';
+import { sendBuyCard, sendMoveTransition, sendNewMoveStatus } from '../../backend';
 import './process.scss'
 import sessionState from '../../store/SessionState';
+import { MoveStatus } from '../../enum';
 
 interface IProps {
     setShow: () => void
@@ -27,15 +28,17 @@ const BuyingCard: FC<IProps> = observer(({setShow}) => {
     function buy() {
         const player = playerState.players.find(el => el.name === playerState.playerName);
         if(player && playerState.playerName) {
-            sendBuyCard(sessionState.sessionId, playerState.playerName , player.position + 1)
-            sendMoveTransition(sessionState.sessionId, playerState.playerName)
-            setShow()
+            sendBuyCard(sessionState.sessionId, playerState.playerName , player.position + 1);
+            sendMoveTransition(sessionState.sessionId, playerState.playerName);
+            sessionState.moveStatus = MoveStatus.Start
+            setShow();
         }
     }
 
     function notBuy() {
         if(playerState.playerName) {
             sendMoveTransition(sessionState.sessionId, playerState.playerName);
+            sessionState.moveStatus = MoveStatus.Start
         }
         setShow();
     }

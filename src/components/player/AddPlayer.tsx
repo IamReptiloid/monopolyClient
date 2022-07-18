@@ -19,20 +19,21 @@ const AddPlayer: FC = observer(() => {
 		setShow(playerState.isAdd)
 	})
 
-    const handleClose = () => {
-        const playerName = inputRef.current?.value;
-        if (playerName) { // todo
-            sendAddPlayer({
-                sessionId: sessionState.sessionId,
-                playerName,
-                colour: getColour(playerState.players)
-            });
-            playerState.setNewName(playerName, sessionState.sessionId);
-            setShow(false);
-        } else {
-            setValidated(true);
-        }
-    };
+  const handleClose = () => {
+      const playerName = inputRef.current?.value;
+      const idUniq = !playerState.players.find(el => el.name === playerName)
+      if (playerName && idUniq) { // todo
+          sendAddPlayer({
+              sessionId: sessionState.sessionId,
+              playerName,
+              colour: getColour(playerState.players)
+          });
+          playerState.setNewName(playerName, sessionState.sessionId);
+          setShow(false);
+      } else {
+          setValidated(true);
+      }
+  };
 
     return (
         <>
@@ -46,7 +47,7 @@ const AddPlayer: FC = observer(() => {
                     <Form.Label>Имя игрока</Form.Label>
                     <Form.Control isInvalid={validated} as="input" ref={inputRef} placeholder="Введите имя" />
                     <Form.Control.Feedback type="invalid">
-                        Обязательное поле
+                        Поле обязательно и должно быть уникально
                     </Form.Control.Feedback>
                 </Form.Group>
               </Form>
