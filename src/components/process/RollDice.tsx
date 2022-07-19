@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import { observer } from 'mobx-react-lite';
 import Button from 'react-bootstrap/Button';
 import sessionState from '../../store/SessionState';
@@ -11,6 +11,13 @@ interface IProps {
 }
 
 const RollDice: FC<IProps> = observer((props) => {
+    const audio = new Audio(require('../../assets/audio/Sound_11086.mp3'));
+    useEffect(() => {
+        audio.play()
+        .then(() => {console.log(1111)})
+        .catch(console.log);
+        console.log(audio)
+    },[])
     const roll = () => {
         sendRollDice({
             sessionId: sessionState.sessionId, 
