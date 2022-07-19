@@ -29,6 +29,9 @@ function subscribes(sessionId: string) {
             subscribeChat(sessionId);
             subscribeMoveStatus(sessionId);
             subscribePayForCard(sessionId);
+            subscribeChangeBalance(sessionId);
+            subscribeChangePosition(sessionId)
+
         });
     }
 }
@@ -55,9 +58,9 @@ function subscribeRollDice(sessionId: string) {
     if(stompClient) {
         stompClient.subscribe('/topic/roll-dice/' + sessionId, (response: IFrame) => {
             const data: IRollDiceResponse =  JSON.parse(response.body);
-            const coords = fieldState.performance?.border[data.player.position].movementCoordinates;
+            const coords = fieldState.performance?.border[data.player.position].movementCoordinates; //                                      HARD CODE
             if(coords) {
-                playerState.setCoords(data.player.playerName, coords, data.player.position);
+                playerState.setCoords(data.player.playerName, coords, data.player.position);//                                               HARD CODE
             }
         })
     }
@@ -68,7 +71,6 @@ function subscribeMoveStatus(sessionId: string) {
         stompClient.subscribe('/topic/move-status/' + sessionId, (response: IFrame) => {
             const data: {moveStatus: string} = JSON.parse(response.body);
             sessionState.moveStatus = data.moveStatus;
-            console.log('sdfgsdfgsdfsdfgsdfgsdgf', data);
         })
     }
 }
@@ -90,6 +92,27 @@ function subscribeBuyCard(sessionId: string) {
             const key = Object.keys(data.cardState)[0];
             fieldState.cardStates[key] = data.cardState[key];
             playerState.setNewBalance(data.player.playerName, data.player.balance)
+        })
+    }
+}
+
+function subscribeChangeBalance(sessionId: string) {
+    if(stompClient) {
+        stompClient.subscribe('/topic/change-balance/' + sessionId, (response: IFrame) => {
+            const data: {playerName: string, balance: number} = JSON.parse(response.body);
+            playerState.setNewBalance(data.playerName, data.balance);
+        })
+    }
+}
+
+function subscribeChangePosition(sessionId: string) {
+    if(stompClient) {
+        stompClient.subscribe('/topic/change-position/' + sessionId, (response: IFrame) => {
+            const data: {playerName: string, position: number} = JSON.parse(response.body);
+            const coords = fieldState.performance?.border[data.position].movementCoordinates; //                                      HARD CODE
+            if(coords) {
+                playerState.setCoords(data.playerName, coords, 2);//                                                                  HARD CODE
+            }
         })
     }
 }
@@ -166,5 +189,11 @@ export function sendMessage(sessionId: string, playerName: string, message: stri
 export function sendPayForCard(sessionId: string, playerName: string, cardId: number) {
     if(stompClient) {
         stompClient.send('/app/sessions/pay-for-card', {}, JSON.stringify({sessionId, playerName, cardId}))
+    }
+}
+
+export function sendChance(sessionId: string, playerName: string) {
+    if(stompClient) {
+        stompClient.send('/app/cards/chance', {}, JSON.stringify({sessionId, playerName}))
     }
 }
