@@ -24,6 +24,7 @@ const Monopoly: FC = observer(() => {
         }
 		const field = new Field();
         setInitState(field, sessionState.sessionId);
+        playerState.playerName = localStorage.getItem(sessionState.sessionId);
         // TODO
         // window.onresize = () => {
         //     setSize(getScale())

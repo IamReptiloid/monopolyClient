@@ -14,9 +14,6 @@ const RollDice: FC<IProps> = observer((props) => {
     const audio = new Audio(require('../../assets/audio/Sound_11086.mp3'));
     useEffect(() => {
         audio.play()
-        .then(() => {console.log(1111)})
-        .catch(console.log);
-        console.log(audio)
     },[])
     const roll = () => {
         sendRollDice({

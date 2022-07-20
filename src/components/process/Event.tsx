@@ -6,7 +6,7 @@ import RollDice from './RollDice';
 import fieldState from '../../store/FieldState';
 import sessionState from '../../store/SessionState';
 import { MoveStatus, TypeCard } from '../../enum';
-import { sendPayForCard, sendMoveTransition, sendChance } from '../../backend';
+import { sendMoveTransition, sendChance } from '../../backend';
 import { ICell } from '../../interface';
 import PayForCard from './PayForCard';
 
@@ -20,7 +20,6 @@ const Event: FC = observer(() => {
     const player = playerState.players.find(el => el.name === playerState.playerName);
         if(player && fieldState.performance) {
             card = fieldState.performance.border[player.position];
-            console.log(card.type)
             if (card.type === TypeCard.Company && !fieldState.cardStates[card.id].ownerName) {
                 setRoll(false);
                 setBuy(true)

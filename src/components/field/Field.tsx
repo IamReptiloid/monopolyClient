@@ -32,6 +32,7 @@ const Field: FC = observer(() => {
                         isRight={card.isRight} 
                         isBottom={card.isBottom} 
                         isLeft={card.isLeft}
+                        type={card.type}
                     /> 
                     :<SquareCard key={card.id} image={card.image} position={card.coords}/>
                 return result;

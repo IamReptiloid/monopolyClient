@@ -1,0 +1,62 @@
+.cardInfo {
+    position: absolute;
+    width: 120px;
+    height: 190px;
+    background-color: rgb(255, 255, 255);
+    z-index: 1000;
+    border-radius: 5px;
+    box-shadow: 0 0 7px rgba(0,0,0);
+    cursor: auto;
+    &__header {
+        border-radius: 5px 5px 0 0;
+        padding: 6px;
+        color: white;
+        line-height: 0.8rem
+    }
+
+    &__title {
+        font-size: 12px;
+    }
+
+    &__sphere {
+        font-size: 8px;
+    }
+
+    &__description {
+        font-size: 8px;
+        padding: 0 6px 0 6px;
+    }
+
+    &__rent {
+        font-size: 8px;
+        padding: 0 6px 0 6px;
+    }
+
+    &__start {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__info{
+        font-size: 8px;
+        padding: 0 6px 0 6px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__buttons {
+        margin-top: 3px;
+        display: flex;
+        padding: 0 6px 0 6px;
+        justify-content: space-between;
+    }
+}
+
+.megaStar {
+    color: rgb(230, 211, 49);
+}
+
+.size {
+    min-width: 50px;
+    height: 10px;
+}

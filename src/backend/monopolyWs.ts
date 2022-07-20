@@ -23,7 +23,7 @@ function subscribes(sessionId: string) {
             console.log('connect: ',frame);
             subscribeAddPlayer(sessionId);
             subscribeRollDice(sessionId);
-            subscribeBuyCard(sessionId);
+            subscribeCardAction(sessionId);
             subscribeMoveTransition(sessionId);
             subscribeStartGame(sessionId);
             subscribeChat(sessionId);
@@ -85,12 +85,13 @@ function subscribePayForCard(sessionId: string) {
     }
 }
 
-function subscribeBuyCard(sessionId: string) {
+function subscribeCardAction(sessionId: string) {
     if(stompClient) {
-        stompClient.subscribe('/topic/buy-card/' + sessionId, (response: IFrame) => {
+        stompClient.subscribe('/topic/card-action/' + sessionId, (response: IFrame) => {
             const data: IBuyCardResponse = JSON.parse(response.body);
             const key = Object.keys(data.cardState)[0];
             fieldState.cardStates[key] = data.cardState[key];
+            console.log(fieldState.cardStates[key])
             playerState.setNewBalance(data.player.playerName, data.player.balance)
         })
     }
@@ -111,7 +112,7 @@ function subscribeChangePosition(sessionId: string) {
             const data: {playerName: string, position: number} = JSON.parse(response.body);
             const coords = fieldState.performance?.border[data.position].movementCoordinates; //                                      HARD CODE
             if(coords) {
-                playerState.setCoords(data.playerName, coords, 2);//                                                                  HARD CODE
+                playerState.setCoords(data.playerName, coords, data.position);//                                                                  HARD CODE
             }
         })
     }
@@ -132,6 +133,26 @@ function subscribeChat(sessionId: string) {
             const data: IMessage = JSON.parse(response.body)
             chatState.chatHistory.push(data)
         })
+    }
+}
+
+export function sendUpdateCad(sessionId: string,  playerName: string, cardId: number) {
+    if(stompClient) {
+        stompClient.send('/app/sessions/improve-card', {}, JSON.stringify({
+            sessionId,
+            playerName,
+            cardId
+        }))
+    }
+}
+
+export function sendSellCard(sessionId: string,  playerName: string, cardId: number) {
+    if(stompClient) {
+        stompClient.send('/app/sessions/sell-card', {}, JSON.stringify({
+            sessionId,
+            playerName,
+            cardId
+        }))
     }
 }
 

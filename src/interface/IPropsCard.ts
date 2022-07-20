@@ -14,5 +14,6 @@ export interface IPropsCardRectangular extends IPropsCard {
     isTop: boolean,
     isRight: boolean,
     isBottom: boolean,
-    isLeft: boolean
+    isLeft: boolean,
+    type: string
 }
