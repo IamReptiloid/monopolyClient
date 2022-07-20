@@ -44,6 +44,11 @@ const RectangularCard: FC<IPropsCardRectangular> = observer(({image, position, i
         else return 'rectangularCard__state_bottomAndRight'
     }
 
+    function getClassStar() {
+        if(isTop || isLeft) return 'star__topAndLeft';
+        else return 'star__bottomAndRight'
+    }
+
     function getColour(): string {
         if(state && state.ownerName) {
             const player = playerState.players.find(el => el.name === state.ownerName)
@@ -83,6 +88,12 @@ const RectangularCard: FC<IPropsCardRectangular> = observer(({image, position, i
                     {(state.ownerName? state.fine: state.price) + 'K'}
                 </div>
             : ''}
+        {state
+            ? <div className={"star " + getClassStar()}>
+                {state.level < 5?'★'.repeat(state.level): <span className='star__gold'>★</span>}
+            </div>
+            :''
+        }
     </div>
     )
 })
