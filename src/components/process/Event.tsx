@@ -9,17 +9,21 @@ import { MoveStatus, TypeCard } from '../../enum';
 import { sendMoveTransition, sendChance } from '../../backend';
 import { ICell } from '../../interface';
 import PayForCard from './PayForCard';
+import Jackpot from './Jackpot';
 
 const Event: FC = observer(() => {
     const [isRoll, setRoll] = useState(true);
     const [isBuy, setBuy] = useState(false);
     const [isPay, setPay] = useState(false);
+    const [isJackpot, setJackpot] = useState(false);
     let card : ICell | null = null;
 
     function typeEventTarget() {
     const player = playerState.players.find(el => el.name === playerState.playerName);
         if(player && fieldState.performance) {
             card = fieldState.performance.border[player.position];
+            console.log(card && card.type)
+
             if (card.type === TypeCard.Company && !fieldState.cardStates[card.id].ownerName) {
                 setRoll(false);
                 setBuy(true)
@@ -32,6 +36,9 @@ const Event: FC = observer(() => {
                 sendMoveTransition(sessionState.sessionId, player.name);
             } else if (card.type === TypeCard.Company && fieldState.cardStates[card.id].ownerName === player.name) {
                 sendMoveTransition(sessionState.sessionId, player.name);
+            } else if (card.type === TypeCard.Jackpot) {
+                setRoll(false);
+                setJackpot(true);
             }
         }
     }
@@ -58,10 +65,15 @@ const Event: FC = observer(() => {
     function setShowPay() {
         setPay(!isPay)
     }
+
+    function setShowJackpot() {
+        setJackpot(!isJackpot);
+    }
     return <>
         {isRoll? <RollDice setShow={setShowRoll}/>: ''}
         {isBuy? <BuyingCard setShow={setShowBuy}/>: ''}
         {isPay? <PayForCard setShow={setShowPay}/>: ''}
+        {isJackpot? <Jackpot setShow={setShowJackpot}/>: ''}
     </>
 })
 

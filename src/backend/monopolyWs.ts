@@ -218,3 +218,9 @@ export function sendChance(sessionId: string, playerName: string) {
         stompClient.send('/app/cards/chance', {}, JSON.stringify({sessionId, playerName}))
     }
 }
+
+export function sendJackpot(sessionId: string, playerName: string, digits: number[]) {
+    if(stompClient) {
+        stompClient.send('/app/cards/jackpot', {}, JSON.stringify({sessionId, playerName, digits}))
+    }
+}

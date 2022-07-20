@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import Button from 'react-bootstrap/Button';
 import fieldState from '../../store/FieldState';
 import playerState from '../../store/PlayerState';
-import { sendBuyCard, sendMoveTransition, sendNewMoveStatus } from '../../backend';
+import { sendBuyCard, sendMoveTransition } from '../../backend';
 import './process.scss'
 import sessionState from '../../store/SessionState';
 import { MoveStatus } from '../../enum';
