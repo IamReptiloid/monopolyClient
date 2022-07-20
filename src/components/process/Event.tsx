@@ -6,16 +6,20 @@ import RollDice from './RollDice';
 import fieldState from '../../store/FieldState';
 import sessionState from '../../store/SessionState';
 import { MoveStatus, TypeCard } from '../../enum';
-import { sendMoveTransition, sendChance } from '../../backend';
+import { sendMoveTransition, sendChance, sendStart, sendTeleport } from '../../backend';
 import { ICell } from '../../interface';
 import PayForCard from './PayForCard';
 import Jackpot from './Jackpot';
+import TaxLuxury from './TaxLuxury';
+import TaxIncome from './TaxIncome';
 
 const Event: FC = observer(() => {
-    const [isRoll, setRoll] = useState(true);
+    const [isRoll, setRoll] = useState(false);
     const [isBuy, setBuy] = useState(false);
     const [isPay, setPay] = useState(false);
     const [isJackpot, setJackpot] = useState(false);
+    const [isTax, setTax] = useState(false);
+    const [taxIncome, setTaxIncome] = useState(false);
     let card : ICell | null = null;
 
     function typeEventTarget() {
@@ -35,10 +39,30 @@ const Event: FC = observer(() => {
                 sendChance(sessionState.sessionId, player.name);
                 sendMoveTransition(sessionState.sessionId, player.name);
             } else if (card.type === TypeCard.Company && fieldState.cardStates[card.id].ownerName === player.name) {
+                sessionState.moveStatus = MoveStatus.Start;
                 sendMoveTransition(sessionState.sessionId, player.name);
             } else if (card.type === TypeCard.Jackpot) {
                 setRoll(false);
                 setJackpot(true);
+            } else if (card.type === TypeCard.TaxLuxury) {
+                setRoll(false);
+                setTax(true);
+            } else if (card.type === TypeCard.TaxIncome) {
+                setRoll(false);
+                setTaxIncome(true);
+            } else if (card.type === TypeCard.Start) {
+                sessionState.moveStatus = MoveStatus.Start
+                setRoll(false);
+                sendStart(sessionState.sessionId, player.name);
+                sendMoveTransition(sessionState.sessionId, player.name);
+            } else if (card.type === TypeCard.Teleport) {
+                sessionState.moveStatus = MoveStatus.Start
+                setRoll(false);
+                sendTeleport(sessionState.sessionId, player.name);
+                sendMoveTransition(sessionState.sessionId, player.name);
+            } else if (card.type === TypeCard.NonType) {
+                sessionState.moveStatus = MoveStatus.Start;
+                sendMoveTransition(sessionState.sessionId, player.name);
             }
         }
     }
@@ -69,11 +93,21 @@ const Event: FC = observer(() => {
     function setShowJackpot() {
         setJackpot(!isJackpot);
     }
+
+    function setShowTax() {
+        setTax(!isTax)
+    }
+
+    function setShowTaxIncome() {
+        setTaxIncome(!taxIncome)
+    }
     return <>
         {isRoll? <RollDice setShow={setShowRoll}/>: ''}
         {isBuy? <BuyingCard setShow={setShowBuy}/>: ''}
         {isPay? <PayForCard setShow={setShowPay}/>: ''}
         {isJackpot? <Jackpot setShow={setShowJackpot}/>: ''}
+        {isTax? <TaxLuxury setShow={setShowTax}/>: ''}
+        {taxIncome? <TaxIncome setShow={setShowTaxIncome}/>: ''}
     </>
 })
 

@@ -224,3 +224,27 @@ export function sendJackpot(sessionId: string, playerName: string, digits: numbe
         stompClient.send('/app/cards/jackpot', {}, JSON.stringify({sessionId, playerName, digits}))
     }
 }
+
+export function sendTaxIncome(sessionId: string, playerName: String) {
+    if(stompClient) {
+        stompClient.send('/app/cards/tax-income', {}, JSON.stringify({sessionId, playerName}))
+    }
+}
+
+export function sendTaxLuxury(sessionId: string, playerName: String) {
+    if(stompClient) {
+        stompClient.send('/app/cards/tax-luxury', {}, JSON.stringify({sessionId, playerName}))
+    }
+}
+
+export function sendStart(sessionId: string, playerName: String) {
+    if(stompClient) {
+        stompClient.send('/app/cards/start', {}, JSON.stringify({sessionId, playerName}))
+    }
+}
+
+export function sendTeleport(sessionId: string, playerName: String) {
+    if(stompClient) {
+        stompClient.send('/app/cards/teleport', {}, JSON.stringify({sessionId, playerName}))
+    }
+}
