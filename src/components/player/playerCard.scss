@@ -12,8 +12,55 @@
         width: 50px;
         border: 2px solid;
     }
+
+    &__lost {
+        background-color: rgba(0,0,0,0.1) !important;
+    }
 }
 
 .playerCard + .playerCard {
     margin-top: 10px;
+}
+
+.dropbtn {
+    background-color: rgba(0,0,0,0);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+  
+.dropbtn:hover, .dropbtn:focus {
+    color: #8b8b8b;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    font-size: 14px;
+    display: none;
+    position: absolute;
+    background-color: rgb(20, 24, 27);
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content{
+    border-radius: 5px;
+}
+
+.button:hover {background-color: #ddd;}
+
+.button{
+    border: none;
+    background-color: rgb(137, 142, 145);
+}
+
+.show {display: block;}
+
+.lost {
+    width: 20px;
 }

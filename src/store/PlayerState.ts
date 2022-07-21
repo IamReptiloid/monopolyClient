@@ -49,6 +49,15 @@ class PalyerState {
         return this.players.find(el => el.name === playerName);
     }
 
+    setNewStatus(playerName: string, status: string) {
+        this.players = this.players.map(el => {
+            if(el.name === playerName) {
+                el.status = status;
+            }
+            return el;
+        })
+    }
+
     get player() {
         return this.players.find(el => el.name === this.playerName);
     }

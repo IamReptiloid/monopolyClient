@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, {FC} from 'react';
 import Button from 'react-bootstrap/Button';
 import playerState from '../../store/PlayerState';
-import {sendMoveTransition, sendPayForCard, sendTaxLuxury } from '../../backend';
+import {sendMoveTransition, sendPayForCard, sendSurrender, sendTaxLuxury } from '../../backend';
 import './process.scss'
 import sessionState from '../../store/SessionState';
 import { MoveStatus } from '../../enum';
@@ -32,6 +32,7 @@ const TaxLuxury: FC<IProps> = observer(({setShow}) => {
 
     function dontPay() {
         if(playerState.playerName) {
+            sendSurrender(sessionState.sessionId, playerState.playerName);
             sendMoveTransition(sessionState.sessionId, playerState.playerName);
             sessionState.moveStatus = MoveStatus.Start
         }

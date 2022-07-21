@@ -4,7 +4,8 @@ export interface IPlayerData {
     name: string,
     balance: number,
     colour: string,
-    role: string
+    role: string,
+    status: string,
 }
 
 export interface IPlayer extends IPlayerData {

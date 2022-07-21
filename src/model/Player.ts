@@ -7,6 +7,7 @@ export class Player implements IPlayer {
     public balance: number;
     public position: number;
     public role: string;
+    public status: string
     public coords: [number, number] = [20, 20]
     
     constructor(data: IPlayerData) {
@@ -16,6 +17,7 @@ export class Player implements IPlayer {
         this.name = data.name;
         this.position = data.position;
         this.role = data.role;
+        this.status = data.status
     }
 
     setBalance(balance: number) {

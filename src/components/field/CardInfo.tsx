@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import { colourStreet } from '../../const/clour';
 import { ICardInfoResponse } from '../../interface';
 import './cardInfo.scss';
@@ -17,10 +17,28 @@ interface IProps {
     isRight: boolean,
     cardId: number,
     cardLevel: number,
-    data: ICardInfoResponse | null
+    data: ICardInfoResponse | null,
+    setInfo: (bool: boolean) => void
 }
 
 const CardInfo: FC<IProps> = observer((props) => {
+    const ref = useRef<null | HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handle = (e: any) => {
+            if(!ref.current) return;
+            if(!ref.current.contains(e.target)) {
+                props.setInfo(false);
+            }
+        };
+
+        document.addEventListener('click', handle);
+
+        return () => {
+            document.removeEventListener('click', handle)
+        }
+    }, [])
+
     if(!props.data) {
         return(<></>)
     }
@@ -73,6 +91,7 @@ const CardInfo: FC<IProps> = observer((props) => {
     return(
         <div 
         className='cardInfo' 
+        ref={ref}
         style={{
             right: props.isRight? '65px': null || props.isBottom? '100px': '',
             transform: props.isBottom || props.isTop? 'rotate(270deg)': '',

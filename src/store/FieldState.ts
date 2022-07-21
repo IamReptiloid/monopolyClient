@@ -13,6 +13,13 @@ class FieldState {
         performance.init(cards);
         this.performance = performance
     }
+
+    setNewCardState(data: ICardsStates) {
+        const keys = Object.keys(data);
+        keys.forEach(id => {
+            this.cardStates[id] = data[id]
+        })
+    }
 }
 
 export default new FieldState();

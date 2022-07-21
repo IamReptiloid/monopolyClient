@@ -1,4 +1,4 @@
-import { ICardState } from "../ICardState"
+import { ICardsStates, ICardState } from "../ICardState"
 
 export interface IRollDiceResponse {
     digits: [number, number],
@@ -33,4 +33,12 @@ export interface IPayForCardResponse {
         balance: number,
         playerName: string
     }
+}
+
+export interface ISurrenderResponse {
+    player: {
+        playerName: string,
+        status: string
+    },
+    cardStates: ICardsStates
 }

@@ -2,7 +2,7 @@ import { Stomp, CompatClient, FrameImpl, IFrame } from "@stomp/stompjs";
 import { URL } from '../const/url';
 import playerState from "../store/PlayerState";
 import fieldState from "../store/FieldState";
-import { IAddPlayerRequest, IPayForCardResponse, IRollDiceRequest } from "../interface";
+import { IAddPlayerRequest, IPayForCardResponse, IRollDiceRequest, ISurrenderResponse } from "../interface";
 import SockJS from "sockjs-client";
 import { IRollDiceResponse, IBuyCardResponse, IStartGameResponse, IMessage } from "../interface";
 import sessionState from "../store/SessionState";
@@ -30,7 +30,8 @@ function subscribes(sessionId: string) {
             subscribeMoveStatus(sessionId);
             subscribePayForCard(sessionId);
             subscribeChangeBalance(sessionId);
-            subscribeChangePosition(sessionId)
+            subscribeChangePosition(sessionId);
+            subscribeSurrender(sessionId);
 
         });
     }
@@ -112,7 +113,7 @@ function subscribeChangePosition(sessionId: string) {
             const data: {playerName: string, position: number} = JSON.parse(response.body);
             const coords = fieldState.performance?.border[data.position].movementCoordinates; //                                      HARD CODE
             if(coords) {
-                playerState.setCoords(data.playerName, coords, data.position);//                                                                  HARD CODE
+                playerState.setCoords(data.playerName, coords, data.position);//                                                      HARD CODE
             }
         })
     }
@@ -132,6 +133,16 @@ function subscribeChat(sessionId: string) {
         stompClient.subscribe('/topic/chat/' + sessionId, (response: IFrame) => {
             const data: IMessage = JSON.parse(response.body)
             chatState.chatHistory.push(data)
+        })
+    }
+}
+
+function subscribeSurrender(sessionId: string) {
+    if(stompClient) {
+        stompClient.subscribe('/topic/surrender/' + sessionId, (response: IFrame) => {
+            const data: ISurrenderResponse = JSON.parse(response.body);
+            playerState.setNewStatus(data.player.playerName, data.player.status);
+            fieldState.setNewCardState(data.cardStates)
         })
     }
 }
@@ -192,7 +203,7 @@ export function sendAddPlayer(data: IAddPlayerRequest) {
 }
 
 export function sendMoveTransition(sessionId: string, playerName: string) {
-    if(stompClient) {
+    if(stompClient?.connect) {
         stompClient.send('/app/sessions/move-transition', {}, JSON.stringify({sessionId, playerName}))
     }
 }
@@ -246,5 +257,11 @@ export function sendStart(sessionId: string, playerName: String) {
 export function sendTeleport(sessionId: string, playerName: String) {
     if(stompClient) {
         stompClient.send('/app/cards/teleport', {}, JSON.stringify({sessionId, playerName}))
+    }
+}
+
+export function sendSurrender(sessionId: string, playerName: String) {
+    if(stompClient) {
+        stompClient.send('/app/sessions/surrender', {}, JSON.stringify({sessionId, playerName}))
     }
 }

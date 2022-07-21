@@ -14,7 +14,7 @@ import TaxLuxury from './TaxLuxury';
 import TaxIncome from './TaxIncome';
 
 const Event: FC = observer(() => {
-    const [isRoll, setRoll] = useState(false);
+    const [isRoll, setRoll] = useState(true);
     const [isBuy, setBuy] = useState(false);
     const [isPay, setPay] = useState(false);
     const [isJackpot, setJackpot] = useState(false);

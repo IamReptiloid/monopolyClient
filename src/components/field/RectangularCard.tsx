@@ -15,27 +15,13 @@ const RectangularCard: FC<IPropsCardRectangular> = observer(({image, position, i
     const state = fieldState.cardStates[id];
     const [info, setInfo] = useState(false);
     const [data, setData] = useState<null | ICardInfoResponse>(null);
-    const ref = useRef<null | HTMLDivElement>(null);
-    useEffect(() => {
-        const handle = (e: any) => {
-            if(!ref.current) return;
-            if(!ref.current.contains(e.target)) {
-                setInfo(false);
-            }
-        };
 
-        document.addEventListener('click', handle);
-
-        return () => {
-            document.removeEventListener('click', handle)
-        }
-    }, [])
 
     async function click() {
         if(isCompany()) {
-            setInfo(true);
             const response =  await getInfoCard(sessionState.sessionId, id);
             setData(response);
+            setInfo(true);
         }
     }
 
@@ -67,7 +53,6 @@ const RectangularCard: FC<IPropsCardRectangular> = observer(({image, position, i
 
     return (
     <div 
-        ref={ref}
         className={isRotate? isTop? 'rectangularCard rectangularCard__rotate_top' : 'rectangularCard rectangularCard__rotate_bottom' : 'rectangularCard'} 
         style={{
             ...position, 
@@ -77,7 +62,7 @@ const RectangularCard: FC<IPropsCardRectangular> = observer(({image, position, i
         }}
         onClick={click}
     >
-        {info? <CardInfo cardLevel={state.level} data={data} isBottom={isBottom} isLeft={isLeft} isTop={isTop} cardId={id} isRight={isRight}/>: ''}
+        {info? <CardInfo setInfo={setInfo} cardLevel={state.level} data={data} isBottom={isBottom} isLeft={isLeft} isTop={isTop} cardId={id} isRight={isRight}/>: ''}
         {state
             ? <div 
                 className={'rectangularCard__state ' + getClass()}

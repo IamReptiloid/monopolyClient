@@ -3,7 +3,7 @@ import React, {FC, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import fieldState from '../../store/FieldState';
 import playerState from '../../store/PlayerState';
-import {sendMoveTransition, sendPayForCard } from '../../backend';
+import {sendMoveTransition, sendPayForCard, sendSurrender } from '../../backend';
 import './process.scss'
 import sessionState from '../../store/SessionState';
 import { MoveStatus } from '../../enum';
@@ -39,6 +39,7 @@ const PayForCard: FC<IProps> = observer(({setShow}) => {
 
     function dontPay() {
         if(playerState.playerName) {
+            sendSurrender(sessionState.sessionId, playerState.playerName);
             sendMoveTransition(sessionState.sessionId, playerState.playerName);
             sessionState.moveStatus = MoveStatus.Start
         }
