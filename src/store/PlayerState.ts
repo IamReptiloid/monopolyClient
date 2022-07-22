@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import { StatusPlayer } from "../enum";
 import { IPlayer, IPlayerData } from '../interface/index';
 import { Player } from "../model/Player";
 
@@ -56,6 +57,24 @@ class PalyerState {
             }
             return el;
         })
+        this.setWinplayer();
+    }
+
+    private setWinplayer() {
+        let countWin = 0;
+        this.players.forEach(el => {
+            if(el.status === StatusPlayer.Playing) {
+                countWin += 1;
+            }
+        })
+        if(countWin === 1) {
+            this.players = this.players.map(el => {
+                if(el.status === StatusPlayer.Playing) {
+                    el.status = StatusPlayer.Won;
+                }
+                return el;
+            })
+        }
     }
 
     get player() {

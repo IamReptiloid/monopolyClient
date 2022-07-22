@@ -6,6 +6,7 @@
     align-items: center;
     padding: 10px;
     border-radius: 10px;
+    margin-bottom: 10px;
     &__img {
         border-radius: 50%;
         height: 50px;
@@ -16,10 +17,6 @@
     &__lost {
         background-color: rgba(0,0,0,0.1) !important;
     }
-}
-
-.playerCard + .playerCard {
-    margin-top: 10px;
 }
 
 .dropbtn {
@@ -63,4 +60,27 @@
 
 .lost {
     width: 20px;
+}
+
+.won {
+    color: white;
+    background-color: #26272C;
+    position: absolute;
+    min-width: 360px;
+    height: 360px;
+    top: 62px;
+    left: 232px;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 30px;
+    font-size: 30px;
+    img{
+        width: 100px;
+        height: 100px;
+    }
+    &__text {
+        margin-bottom: 10px;
+    }
 }

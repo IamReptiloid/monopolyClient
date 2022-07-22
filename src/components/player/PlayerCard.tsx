@@ -45,6 +45,21 @@ const PlayerCard: FC<IProps> = (props: IProps) => {
             setShow(!show);
         }
     }
+    console.log(props.player.status)
+    if(props.player.status === StatusPlayer.Won) {
+        return <div className="won">
+            <div className="won__text">
+                Победитель этой игры
+            </div>
+            <div>
+                <img src={require('../../assets/biba.jpg')} alt="" className="playerCard__img" style={{borderColor: colour[1]}}/>
+            </div>
+            <div>
+                {props.player.name}
+            </div>
+            
+        </div>
+    }
 
     return <div className={'playerCard ' + (props.player.status === StatusPlayer.Lost? 'playerCard__lost': '')} style={{background: isActive?`linear-gradient(70deg, ${colour[0]}, ${colour[1]})`: '#14181b', transform: isActive? 'scale(1.06)': ''}}>
         <div>
