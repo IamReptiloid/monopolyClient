@@ -6,6 +6,7 @@ export interface IPosition {
 export interface IPropsCard {
     image: string,
     position: IPosition,
+    id: number
 }
 
 export interface IPropsCardRectangular extends IPropsCard {

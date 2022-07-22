@@ -34,7 +34,7 @@ const Field: FC = observer(() => {
                         isLeft={card.isLeft}
                         type={card.type}
                     /> 
-                    :<SquareCard key={card.id} image={card.image} position={card.coords}/>
+                    :<SquareCard key={card.id} id={card.id} image={card.image} position={card.coords}/>
                 return result;
             }) }
         </div>
