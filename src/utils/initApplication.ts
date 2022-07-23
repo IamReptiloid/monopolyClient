@@ -1,5 +1,5 @@
-import { IField, IInitialResponse} from "../interface";
-import { getInitState } from "../backend";
+import { ICardData, IField, IInitialResponse} from "../interface";
+import { getCard, getInitState } from "../backend";
 import { setConnect } from "../backend";
 import fieldState from '../store/FieldState';
 import playerState from "../store/PlayerState";
@@ -9,7 +9,8 @@ import chatState from "../store/ChatState";
 export async function setInitState(field: IField, sessionId: string) {
     setConnect(sessionId);
     const initialState: IInitialResponse = await getInitState(sessionId);
-    await fieldState.initPerformance(field, initialState.cards);
+    const cardData: ICardData = await getCard();
+    await fieldState.initPerformance(field, cardData.cards);
     playerState.setPlayers(initialState.players);
     fieldState.cardStates = initialState.cardStates;
     sessionState.state = initialState.state;

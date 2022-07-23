@@ -1,6 +1,6 @@
 import axios from "axios";
 import { URL } from "../const/url";
-import { ICardInfoResponse, IInitialResponse } from "../interface/index";
+import { ICardData, ICardInfoResponse, IInitialResponse } from "../interface/index";
 
 const API = '/api/v1/sessions';
 
@@ -13,7 +13,7 @@ export async function createSession(sessionId: string, playerName: string, colou
 }
 
 export async function getInitState(sessionId: string): Promise<IInitialResponse>{
-    const response = await axios.get<IInitialResponse>(URL + '/api/v1/sessions/' + sessionId);
+    const response = await axios.get<IInitialResponse>(URL + '/api/v1/sessions/state/' + sessionId);
     return response.data;
 }
 
@@ -24,5 +24,10 @@ export async function getInfoCard(sessionId: string, cardId: number) {
             cardId
         }
     })
+    return response.data
+}
+
+export async function getCard() {
+    const response = await axios.get<ICardData>(URL + '/api/v1/sessions/static')
     return response.data
 }
