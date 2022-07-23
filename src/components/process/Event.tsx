@@ -12,6 +12,7 @@ import PayForCard from './PayForCard';
 import Jackpot from './Jackpot';
 import TaxLuxury from './TaxLuxury';
 import TaxIncome from './TaxIncome';
+import Dice from './Dice';
 
 const Event: FC = observer(() => {
     const [isRoll, setRoll] = useState(true);
@@ -20,6 +21,7 @@ const Event: FC = observer(() => {
     const [isJackpot, setJackpot] = useState(false);
     const [isTax, setTax] = useState(false);
     const [taxIncome, setTaxIncome] = useState(false);
+    const [dice, setDice] = useState(false)
     let card : ICell | null = null;
 
     function typeEventTarget() {
@@ -76,10 +78,12 @@ const Event: FC = observer(() => {
     }, [])
 
     function setShowRoll() {
+        setDice(true);
         setRoll(!isRoll);
         setTimeout(() => {
+            setDice(false);
             typeEventTarget()
-        }, 600)
+        }, 2100)
     }
 
     function setShowBuy() {
@@ -102,6 +106,7 @@ const Event: FC = observer(() => {
         setTaxIncome(!taxIncome)
     }
     return <>
+        {dice? <Dice dice={sessionState.dice}/>: ''}
         {isRoll? <RollDice setShow={setShowRoll}/>: ''}
         {isBuy? <BuyingCard setShow={setShowBuy}/>: ''}
         {isPay? <PayForCard setShow={setShowPay}/>: ''}

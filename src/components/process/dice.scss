@@ -1,0 +1,73 @@
+.dice {
+    position: absolute;
+    top: 62px;
+    left: 62px;
+    min-width: 190px;
+    height: 360px;
+}
+
+.cube {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top:  calc(50% - 300px / 2);
+    left: calc(50% - 300px / 2);
+    transform-style: preserve-3d;
+    transform: perspective(700px)  rotateX(-36deg) rotateY(-27deg) scaleX(0.1) scaleY(0.1) scaleZ(0.1);
+    transition: all 1s ease;
+    animation: rotation_6 2s ease-in-out infinite;
+    animation-iteration-count: 1
+}
+
+.cube > article {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    position: absolute;
+    transform-style: preserve-3d;
+    background: linear-gradient(0deg, #fff, #fff);
+    line-height: 150%;
+    letter-spacing: 0.05em;
+    box-shadow:
+        0 0 1px #000,
+        0 0 1px #000,
+        0 0 1px #000,
+        0 0 1px #000,
+        0 0 10px #aaa inset,
+        0 0 35px #bbb;
+}
+
+.back   {transform: rotateX(-180deg) translateZ(150px);}
+.top    {transform: rotateX( 90deg)  translateZ(150px);}
+.front  {transform:                  translateZ(150px);}
+.bottom {transform: rotateX(-90deg)  translateZ(150px);}
+.left   {transform: rotateY(-90deg)  translateZ(150px);}
+.right  {transform: rotateY( 90deg)  translateZ(150px);}
+
+.cube > article img {
+    width: 100%;
+}
+
+@keyframes rotation_6 {
+    50% {transform:perspective(700px) rotateX(540deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+    100% {transform:perspective(700px) rotateX(540deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+}
+
+.cube_1 {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top:  calc(50% - 300px / 2);
+    left: calc(50% - 300px / 2);
+    transform-style: preserve-3d;
+    transform: perspective(700px)  rotateX(-36deg) rotateY(-27deg) scaleX(0.1) scaleY(0.1) scaleZ(0.1);
+    transition: all 1s ease;
+    animation: rotation_4 2s ease-in-out infinite;
+    animation-iteration-count: 1;
+}
+
+@keyframes rotation_4 {
+    50% {transform:perspective(700px) rotateX(630deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+    100% {transform:perspective(700px) rotateX(630deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+}

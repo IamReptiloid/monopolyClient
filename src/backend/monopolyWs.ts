@@ -59,9 +59,12 @@ function subscribeRollDice(sessionId: string) {
     if(stompClient) {
         stompClient.subscribe('/topic/roll-dice/' + sessionId, (response: IFrame) => {
             const data: IRollDiceResponse =  JSON.parse(response.body);
+            sessionState.dice = data.digits;
             const coords = fieldState.performance?.border[data.player.position].movementCoordinates; //                                      HARD CODE
             if(coords) {
-                playerState.setCoords(data.player.playerName, coords, data.player.position);//                                               HARD CODE
+                setTimeout(() => {
+                    playerState.setCoords(data.player.playerName, coords, data.player.position);
+                }, 2000)
             }
         })
     }

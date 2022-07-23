@@ -12,9 +12,11 @@ interface IProps {
 
 const RollDice: FC<IProps> = observer((props) => {
     const audio = new Audio(require('../../assets/audio/Sound_11086.mp3'));
+    
     useEffect(() => {
         audio.play()
     },[])
+
     const roll = () => {
         sendRollDice({
             sessionId: sessionState.sessionId, 

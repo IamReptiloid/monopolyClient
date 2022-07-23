@@ -6,6 +6,7 @@ class SessionState {
     currentPlayer: string | null = null;
     moveStatus: string | null = null;
     state = ''
+    dice: [number, number] = [1,1]
 
     constructor() {
         makeAutoObservable(this);
