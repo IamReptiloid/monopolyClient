@@ -9,6 +9,7 @@ import chatState from "../store/ChatState";
 export async function setInitState(field: IField, sessionId: string, cardData: ICardData) {
     setConnect(sessionId);
     const initialState: IInitialResponse = await getInitState(sessionId);
+    console.log(cardData.cards)
     await fieldState.initPerformance(field, cardData.cards);
     playerState.setPlayers(initialState.players);
     fieldState.cardStates = initialState.cardStates;

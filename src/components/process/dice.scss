@@ -49,9 +49,94 @@
     width: 100%;
 }
 
+.cube_6 {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top:  calc(50% - 300px / 2);
+    left: calc(50% - 300px / 2);
+    transform-style: preserve-3d;
+    transform: perspective(700px)  rotateX(-36deg) rotateY(-27deg) scaleX(0.1) scaleY(0.1) scaleZ(0.1);
+    transition: all 1s ease;
+    animation: rotation_6 2s ease-in-out infinite;
+    animation-iteration-count: 1
+}
+
 @keyframes rotation_6 {
     50% {transform:perspective(700px) rotateX(540deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
     100% {transform:perspective(700px) rotateX(540deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+}
+
+.cube_5 {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top:  calc(50% - 300px / 2);
+    left: calc(50% - 300px / 2);
+    transform-style: preserve-3d;
+    transform: perspective(700px)  rotateX(-36deg) rotateY(-27deg) scaleX(0.1) scaleY(0.1) scaleZ(0.1);
+    transition: all 1s ease;
+    animation: rotation_5 2s ease-in-out infinite;
+    animation-iteration-count: 1
+}
+
+@keyframes rotation_5 {
+    50% {transform:perspective(700px) rotateX(720deg) rotateY(90deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+    100% {transform:perspective(700px) rotateX(720deg) rotateY(90deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+}
+
+.cube_4 {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top:  calc(50% - 300px / 2);
+    left: calc(50% - 300px / 2);
+    transform-style: preserve-3d;
+    transform: perspective(700px)  rotateX(-36deg) rotateY(-27deg) scaleX(0.1) scaleY(0.1) scaleZ(0.1);
+    transition: all 1s ease;
+    animation: rotation_4 2s ease-in-out infinite;
+    animation-iteration-count: 1
+}
+
+@keyframes rotation_4 {
+    50% {transform:perspective(700px) rotateX(630deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+    100% {transform:perspective(700px) rotateX(630deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+}
+
+.cube_3 {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top:  calc(50% - 300px / 2);
+    left: calc(50% - 300px / 2);
+    transform-style: preserve-3d;
+    transform: perspective(700px)  rotateX(-36deg) rotateY(-27deg) scaleX(0.1) scaleY(0.1) scaleZ(0.1);
+    transition: all 1s ease;
+    animation: rotation_3 2s ease-in-out infinite;
+    animation-iteration-count: 1
+}
+
+@keyframes rotation_3 {
+    50% {transform:perspective(700px) rotateX(810deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+    100% {transform:perspective(700px) rotateX(810deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+}
+
+.cube_2 {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top:  calc(50% - 300px / 2);
+    left: calc(50% - 300px / 2);
+    transform-style: preserve-3d;
+    transform: perspective(700px)  rotateX(-36deg) rotateY(-27deg) scaleX(0.1) scaleY(0.1) scaleZ(0.1);
+    transition: all 1s ease;
+    animation: rotation_2 2s ease-in-out infinite;
+    animation-iteration-count: 1
+}
+
+@keyframes rotation_2 {
+    50% {transform:perspective(700px) rotateX(720deg) rotateY(270deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+    100% {transform:perspective(700px) rotateX(720deg) rotateY(270deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
 }
 
 .cube_1 {
@@ -63,11 +148,11 @@
     transform-style: preserve-3d;
     transform: perspective(700px)  rotateX(-36deg) rotateY(-27deg) scaleX(0.1) scaleY(0.1) scaleZ(0.1);
     transition: all 1s ease;
-    animation: rotation_4 2s ease-in-out infinite;
-    animation-iteration-count: 1;
+    animation: rotation_1 2s ease-in-out infinite;
+    animation-iteration-count: 1
 }
 
-@keyframes rotation_4 {
-    50% {transform:perspective(700px) rotateX(630deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
-    100% {transform:perspective(700px) rotateX(630deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+@keyframes rotation_1 {
+    50% {transform:perspective(700px) rotateX(720deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
+    100% {transform:perspective(700px) rotateX(720deg) rotateY(360deg) scaleX(0.3) scaleY(0.3) scaleZ(0.3);}
 }

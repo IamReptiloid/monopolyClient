@@ -28,8 +28,7 @@ const Event: FC = observer(() => {
     const player = playerState.players.find(el => el.name === playerState.playerName);
         if(player && fieldState.performance) {
             card = fieldState.performance.border[player.position];
-            console.log(card && card.type)
-
+            console.log(player.position, ' ', card.type)
             if (card.type === TypeCard.Company && !fieldState.cardStates[card.id].ownerName) {
                 setRoll(false);
                 setBuy(true)
@@ -83,7 +82,7 @@ const Event: FC = observer(() => {
         setTimeout(() => {
             setDice(false);
             typeEventTarget()
-        }, 2100)
+        }, 2600)
     }
 
     function setShowBuy() {

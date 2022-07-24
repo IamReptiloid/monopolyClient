@@ -7,7 +7,7 @@ interface IProps {
 const Dice: FC<IProps> = ({dice}) => {
     return (
     <div className='dice'>
-        <section className="cube" style={{marginRight: '100px'}}>
+        <section className={`cube cube_${dice[0]}`} style={{marginRight: '100px'}}>
             <article className="back">
                 <img src='/assets/SixDOT.png' alt="" />
             </article>
@@ -27,7 +27,7 @@ const Dice: FC<IProps> = ({dice}) => {
                 <img src='/assets/TwoDOT.png' alt=""/>
             </article>
         </section>    
-        <section className="cube cube_4" style={{marginLeft: '165px'}}>
+        <section className={`cube cube_${dice[1]}`} style={{marginLeft: '165px'}}>
             <article className="back">
                 <img src='/assets/SixDOT.png' alt=""/>
             </article>

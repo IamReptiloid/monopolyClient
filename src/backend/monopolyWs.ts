@@ -116,7 +116,7 @@ function subscribeChangePosition(sessionId: string) {
             const data: {playerName: string, position: number} = JSON.parse(response.body);
             const coords = fieldState.performance?.border[data.position].movementCoordinates; //                                      HARD CODE
             if(coords) {
-                playerState.setCoords(data.playerName, coords, data.position);//                                                      HARD CODE
+                    playerState.setCoords(data.playerName, coords, data.position)//                                                     HARD CODE
             }
         })
     }

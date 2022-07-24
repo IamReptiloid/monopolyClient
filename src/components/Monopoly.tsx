@@ -31,7 +31,10 @@ const Monopoly: FC<iParams> = observer(({cardData}) => {
     }, [])
 
     return <div className='monopoly' style={{transform: `scale(${size})`}}>
-        <Head><title>Монополия</title></Head>
+        <Head>
+            <link rel="shortcut icon" href="/assets/logo.ico" type="image/x-icon"/>
+            <title>Монополия</title>
+        </Head>
         {playerState.playerName || sessionState.isStart? '': <AddPlayer/>}
         <PlayerCards/>
 		<FieldComponent/>

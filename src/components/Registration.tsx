@@ -8,6 +8,7 @@ import sessionState from '../store/SessionState';
 import { getColour } from '../utils/getColour';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Help from './process/Help';
 
 const Registration: FC = () => {
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -34,8 +35,11 @@ const Registration: FC = () => {
         }
     }
 
-    return <>
-    <Head><title>Создание игры</title></Head>
+    return <div>
+    <Head>
+        <title>Создание игры</title>
+        <link rel="shortcut icon" href="/assets/logo.ico" type="image/x-icon"/>
+    </Head>
     <div className='registration'>
         <Form className='registration__form'>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -48,12 +52,16 @@ const Registration: FC = () => {
                     Имя будет использоваться во время игры
                 </Form.Text>
             </Form.Group>
-            <Button onClick={submit} variant="primary">
-                Создать сессию
-            </Button>
+            <div className='reg'>
+                <Help/>
+
+                <Button onClick={submit} variant="primary">
+                    Создать сессию
+                </Button>
+            </div>
         </Form>
     </div>
-</>
+</div>
     
 }
 

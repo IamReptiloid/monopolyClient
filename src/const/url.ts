@@ -1,1 +1,1 @@
-export const URL = 'https://ultra-legendary-monopoly.herokuapp.com';
+export const URL = 'http://localhost:8090';
