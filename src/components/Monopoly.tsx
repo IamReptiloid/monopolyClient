@@ -10,12 +10,13 @@ import { setInitState } from '../utils/initApplication';
 import style from './Monopoly.module.scss';
 import { getScale } from '../utils/getScale';
 import Head from 'next/head';
+import { ICardData } from '../interface';
 
 interface iParams {
-    id: string
+    cardData: ICardData
 }
 
-const Monopoly: FC = observer(() => {
+const Monopoly: FC<iParams> = observer(({cardData}) => {
     const [size, setSize] = useState<number>(1)
     useEffect(() => {
         setSize(getScale())
@@ -23,7 +24,7 @@ const Monopoly: FC = observer(() => {
     	    sessionState.setSessionId(window.location.pathname.slice(7));
         }
 		const field = new Field();
-        setInitState(field, sessionState.sessionId);
+        setInitState(field, sessionState.sessionId, cardData);
         playerState.playerName = localStorage.getItem(sessionState.sessionId);
         window.onresize = () => {
             setSize(getScale())
