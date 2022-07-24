@@ -3,7 +3,6 @@ import fieldState from '../../store/FieldState';
 import { ICell } from '../../interface';
 import SquareCard from './SquareCard';
 import RectangularCard from './RectangularCard';
-import './field.scss';
 import { observer } from 'mobx-react-lite';
 import Event from '../process/Event';
 import playerState from '../../store/PlayerState';

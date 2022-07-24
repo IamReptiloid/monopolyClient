@@ -4,10 +4,8 @@ import Button from 'react-bootstrap/Button';
 import fieldState from '../../store/FieldState';
 import playerState from '../../store/PlayerState';
 import {sendMoveTransition, sendPayForCard, sendSurrender } from '../../backend';
-import './process.scss'
 import sessionState from '../../store/SessionState';
 import { MoveStatus } from '../../enum';
-import { ICell } from '../../interface';
 
 interface IProps {
     setShow: () => void,

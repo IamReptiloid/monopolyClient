@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import { JSDocNonNullableType } from 'typescript';
 import { IPlayer } from '../../interface';
 import playerState from '../../store/PlayerState';
-import './chat.scss';
 
 interface IProps {
     message: string,

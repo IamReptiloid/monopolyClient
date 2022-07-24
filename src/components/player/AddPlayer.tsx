@@ -5,7 +5,6 @@ import Modal from 'react-bootstrap/Modal';
 import sessionState from '../../store/SessionState';
 import playerState from '../../store/PlayerState';
 import { sendAddPlayer } from '../../backend';
-import './addPlayer.scss';
 import { observer } from 'mobx-react-lite';
 import { getColour } from '../../utils/getColour';
 
@@ -19,31 +18,45 @@ const AddPlayer: FC = observer(() => {
 		setShow(playerState.isAdd)
 	})
 
-  const handleClose = () => {
-      const playerName = inputRef.current?.value;
-      const idUniq = !playerState.players.find(el => el.name === playerName)
-      if (playerName && idUniq) { // todo
-          sendAddPlayer({
-              sessionId: sessionState.sessionId,
-              playerName,
-              colour: getColour(playerState.players)
-          });
-          playerState.setNewName(playerName, sessionState.sessionId);
-          setShow(false);
-      } else {
-          setValidated(true);
-      }
-  };
+	const handleClose = () => {
+		const playerName = inputRef.current?.value;
+		const idUniq = !playerState.players.find(el => el.name === playerName)
+		if (playerName && idUniq) { // todo
+			sendAddPlayer({
+				sessionId: sessionState.sessionId,
+				playerName,
+				colour: getColour(playerState.players)
+			});
+			playerState.setNewName(playerName, sessionState.sessionId);
+			setShow(false);
+		} else {
+			setValidated(true);
+		}
+	};
+
+	const [showing, setShowing] = useState(false);
+
+	useEffect(() => {
+		setShowing(true);
+	}, []);
+
+	if (!showing) {
+		return null;
+	}
+
+	if (typeof window === 'undefined') {
+		return <></>;
+	}
 
     return (
-        <>
+        <div>
           <Modal show={show}>
             <Modal.Header>
               <Modal.Title>Присоединиться к игре</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Form>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Имя игрока</Form.Label>
                     <Form.Control isInvalid={validated} as="input" ref={inputRef} placeholder="Введите имя" />
                     <Form.Control.Feedback type="invalid">
@@ -58,8 +71,8 @@ const AddPlayer: FC = observer(() => {
               </Button>
             </Modal.Footer>
           </Modal>
-        </>
-      );
+        </div>
+    );
 })
 
 export default AddPlayer;

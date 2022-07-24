@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import fieldState from '../../store/FieldState';
 import playerState from '../../store/PlayerState';
 import { sendBuyCard, sendMoveTransition } from '../../backend';
-import './process.scss'
 import sessionState from '../../store/SessionState';
 import { MoveStatus } from '../../enum';
 

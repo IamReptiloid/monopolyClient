@@ -5,8 +5,6 @@ import { StatusPlayer } from '../../enum';
 import { IPlayer } from '../../interface';
 import playerState from '../../store/PlayerState';
 import sessionState from '../../store/SessionState';
-import './playerCard.scss';
-const logo =  require("../../assets/pl.jpg")
 
 interface IProps {
     player: IPlayer
@@ -52,7 +50,7 @@ const PlayerCard: FC<IProps> = (props: IProps) => {
                 Победитель этой игры
             </div>
             <div>
-                <img src={require('../../assets/biba.jpg')} alt="" className="playerCard__img" style={{borderColor: colour[1]}}/>
+                <img src='/assets/biba.jpg' alt="" className="playerCard__img" style={{borderColor: colour[1]}}/>
             </div>
             <div>
                 {props.player.name}
@@ -63,7 +61,7 @@ const PlayerCard: FC<IProps> = (props: IProps) => {
 
     return <div className={'playerCard ' + (props.player.status === StatusPlayer.Lost? 'playerCard__lost': '')} style={{background: isActive?`linear-gradient(70deg, ${colour[0]}, ${colour[1]})`: '#14181b', transform: isActive? 'scale(1.06)': ''}}>
         <div>
-            <img src={logo} alt="" className="playerCard__img" style={{borderColor: colour[1]}}/>
+            <img src='/assets/pl.jpg' alt="" className="playerCard__img" style={{borderColor: colour[1]}}/>
         </div>
 
         <div className='playerCard__name'>
@@ -80,7 +78,7 @@ const PlayerCard: FC<IProps> = (props: IProps) => {
         </div>
 
         <div className='playerCard__balance'>
-            {props.player.status !== StatusPlayer.Lost? props.player.balance + 'K': <img className='lost' src={require('../../assets/death.png')} alt='lost'/>}
+            {props.player.status !== StatusPlayer.Lost? props.player.balance + 'K': <img className='lost' src={'/assets/death.png'} alt='lost'/>}
         </div>
     </div>
 }

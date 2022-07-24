@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import { URL } from '../../const/url';
 import { IPropsCard } from '../../interface';
-import './squareCard.scss';
 
 const SquareCard: FC<IPropsCard> = ({image, position, id}) => {
     function getBorderRadius(): string {

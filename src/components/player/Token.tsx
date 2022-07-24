@@ -3,7 +3,6 @@ import React, {FC} from 'react';
 import { StatusPlayer } from '../../enum';
 import { IPlayer } from '../../interface';
 import playerState from '../../store/PlayerState';
-import './token.scss'
 interface IProps {
     player: IPlayer
     coords: [number, number]

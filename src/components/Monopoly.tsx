@@ -1,5 +1,4 @@
 import React, {FC, useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
 import { Field } from '../model/Field';
 import FieldComponent from './field/Field';
 import PlayerCards from './player/PlayeCards';
@@ -8,19 +7,20 @@ import sessionState from '../store/SessionState';
 import playerState from '../store/PlayerState';
 import { observer } from 'mobx-react-lite';
 import { setInitState } from '../utils/initApplication';
-import './monopoly.scss'
+import style from './Monopoly.module.scss';
 import { getScale } from '../utils/getScale';
+import Head from 'next/head';
 
 interface iParams {
     id: string
 }
 
 const Monopoly: FC = observer(() => {
-	const params = useParams<iParams>();
-    const [size, setSize] = useState<number>(getScale())
+    const [size, setSize] = useState<number>(1)
     useEffect(() => {
+        setSize(getScale())
         if(!sessionState.sessionId) {
-    	    sessionState.setSessionId(params.id);
+    	    sessionState.setSessionId(window.location.pathname.slice(7));
         }
 		const field = new Field();
         setInitState(field, sessionState.sessionId);
@@ -30,7 +30,8 @@ const Monopoly: FC = observer(() => {
         }
     }, [])
 
-    return <div className='monopoly' style={{transform: `scale(${size})`}}>
+    return <div className={style.monopoly} style={{transform: `scale(${size})`}}>
+        <Head><title>Монополия</title></Head>
         {playerState.playerName || sessionState.isStart? '': <AddPlayer/>}
         <PlayerCards/>
 		<FieldComponent/>

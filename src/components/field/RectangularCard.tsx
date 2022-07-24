@@ -2,7 +2,6 @@ import React, {FC, useEffect, useState, useRef} from 'react';
 import { ICardInfoResponse, IPropsCardRectangular } from '../../interface';
 import fieldState from '../../store/FieldState';
 import { URL } from '../../const/url';
-import './rectangularCard.scss';
 import { observer } from 'mobx-react-lite';
 import { colourStreet, colourBuyCard } from '../../const/clour';
 import playerState from '../../store/PlayerState';

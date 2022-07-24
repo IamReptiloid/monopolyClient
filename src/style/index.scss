@@ -30,3 +30,17 @@ body {
     line-height: 1.5;
     background-color: #26272C;
 }
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden!important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #26272c;
+  // background-image: url('../assets/game.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}

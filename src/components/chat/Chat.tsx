@@ -1,9 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React, {FC, KeyboardEvent, useEffect, useRef} from 'react';
-import './chat.scss';
 import Message from './Message';
 import SimpleBar from 'simplebar-react';
-import 'simplebar-react/dist/simplebar.min.css';
+
 import chatState from '../../store/ChatState';
 import { sendMessage } from '../../backend';
 import sessionState from '../../store/SessionState';
