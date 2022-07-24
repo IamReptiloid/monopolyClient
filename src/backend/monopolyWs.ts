@@ -7,7 +7,6 @@ import SockJS from "sockjs-client";
 import { IRollDiceResponse, IBuyCardResponse, IStartGameResponse, IMessage } from "../interface";
 import sessionState from "../store/SessionState";
 import chatState from "../store/ChatState";
-import { MoveStatus } from "../enum";
 
 let stompClient: CompatClient | null = null;
 
@@ -61,9 +60,11 @@ function subscribeRollDice(sessionId: string) {
             const data: IRollDiceResponse =  JSON.parse(response.body);
             sessionState.dice = data.digits;
             const coords = fieldState.performance?.border[data.player.position].movementCoordinates; //                                      HARD CODE
+            playerState.setPosition(data.player.playerName, data.player.position);
+            console.log('data.player.position ', data.player.position)
             if(coords) {
                 setTimeout(() => {
-                    playerState.setCoords(data.player.playerName, coords, data.player.position);
+                    playerState.setCoords(data.player.playerName, coords);
                 }, 2000)
             }
         })
@@ -116,7 +117,8 @@ function subscribeChangePosition(sessionId: string) {
             const data: {playerName: string, position: number} = JSON.parse(response.body);
             const coords = fieldState.performance?.border[data.position].movementCoordinates; //                                      HARD CODE
             if(coords) {
-                    playerState.setCoords(data.playerName, coords, data.position)//                                                     HARD CODE
+                playerState.setPosition(data.playerName, data.position)
+                playerState.setCoords(data.playerName, coords)//                                                     HARD CODE
             }
         })
     }

@@ -26,12 +26,11 @@ class PalyerState {
         this.players.push(new Player(player))
     }
 
-    setCoords(playerName: string, coords: [number, number], position: number) {
+    setCoords(playerName: string, coords: [number, number]) {
         //todo go to sreet
         this.players = this.players.map(player => {
             if(player.name === playerName) {
                 player.coords = coords;
-                player.position = position;
             }
             return player;
         })   
@@ -58,6 +57,15 @@ class PalyerState {
             return el;
         })
         this.setWinplayer();
+    }
+
+    setPosition(playerName: string, position: number) {
+        this.players = this.players.map(el => {
+            if(el.name === playerName) {
+                el.position = position;
+            }
+            return el;
+        })
     }
 
     private setWinplayer() {

@@ -5,6 +5,7 @@ interface IProps {
 }
 
 const Dice: FC<IProps> = ({dice}) => {
+    console.log(dice)
     return (
     <div className='dice'>
         <section className={`cube cube_${dice[0]}`} style={{marginRight: '100px'}}>
