@@ -4,14 +4,14 @@ import Button from 'react-bootstrap/Button';
 import sessionState from '../../store/SessionState';
 import playerState from "../../store/PlayerState"; //todo
 import { sendRollDice } from '../../backend';
-import './process.scss'
+import Head from 'next/head';
 
 interface IProps {
     setShow: () => void
 }
 
 const RollDice: FC<IProps> = observer((props) => {
-    const audio = new Audio(require('../../assets/audio/Sound_11086.mp3'));
+    const audio = new Audio('/assets/audio/Sound_11086.mp3');
     
     useEffect(() => {
         audio.play()
@@ -26,6 +26,7 @@ const RollDice: FC<IProps> = observer((props) => {
     }
 
     return <div className='process'>
+        <Head><title>Ваш ход</title></Head>
         <div className="process__header">Ваш ход!</div>
         <div className="process__body">Вперед к новым победам</div>
         <Button style={{fontSize: '10px'}} onClick={roll}>Бросить кубик</Button>

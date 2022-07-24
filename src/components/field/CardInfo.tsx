@@ -1,7 +1,6 @@
 import React, {FC, useEffect, useRef} from 'react';
 import { colourStreet } from '../../const/clour';
 import { ICardInfoResponse } from '../../interface';
-import './cardInfo.scss';
 import Button from 'react-bootstrap/Button';
 import sessionState from '../../store/SessionState';
 import playerState from '../../store/PlayerState';
@@ -23,6 +22,7 @@ interface IProps {
 
 const CardInfo: FC<IProps> = observer((props) => {
     const ref = useRef<null | HTMLDivElement>(null);
+    console.log(props.data)
 
     useEffect(() => {
         const handle = (e: any) => {

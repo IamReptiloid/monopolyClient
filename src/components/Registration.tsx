@@ -1,16 +1,18 @@
-import React, {FC, useRef, useState} from 'react';
+import React, {FC, useRef, useState, MouseEvent} from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { createSession } from '../backend';
 import { createSessionId } from '../utils/createSessionId';
 import playerState from '../store/PlayerState';
 import sessionState from '../store/SessionState';
-import './registration.scss';
+import style from './Registration.module.scss';
 import { getColour } from '../utils/getColour';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const Registration: FC = () => {
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const history = useHistory();
+    const router = useRouter()
     const [validated, setValidated] = useState<boolean>(false);
 
     const createRoom = async (playerName: string) => {
@@ -19,22 +21,24 @@ const Registration: FC = () => {
         const colour = getColour(playerState.players);
         await createSession(sessionId, playerName, colour);
         playerState.setNewName(playerName, sessionId);
-        history.push(sessionId);
+        router.push(`table/${sessionId}`);
     }
 
-    const submit = () => {
+    const submit = (e: MouseEvent<HTMLButtonElement>) => {
         const playerName = inputRef.current?.value;
         if (playerName) {
+            e.preventDefault()
             createRoom(playerName)
         } else {
+            e.preventDefault()
             setValidated(true);
         }
     }
 
     return <>
-    <h1 className=''>It's a new game, man!</h1>
-    <div className='registration'>
-        <Form className='registration__form'>
+    <Head><title>Создание игры</title></Head>
+    <div className={style.registration}>
+        <Form className={style.registration__form}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Имя</Form.Label>
                 <Form.Control isInvalid={validated} as="input" ref={inputRef} placeholder="Введите имя" />

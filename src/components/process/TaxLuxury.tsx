@@ -3,7 +3,6 @@ import React, {FC} from 'react';
 import Button from 'react-bootstrap/Button';
 import playerState from '../../store/PlayerState';
 import {sendMoveTransition, sendPayForCard, sendSurrender, sendTaxLuxury } from '../../backend';
-import './process.scss'
 import sessionState from '../../store/SessionState';
 import { MoveStatus } from '../../enum';
 

@@ -3,7 +3,6 @@ import React, {FC, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import playerState from '../../store/PlayerState';
 import { sendJackpot, sendMoveTransition } from '../../backend';
-import './process.scss'
 import sessionState from '../../store/SessionState';
 import { MoveStatus } from '../../enum';
 
@@ -55,12 +54,12 @@ const Jackpot: FC<IProps> = observer(({setShow}) => {
         <div className="process__body">Сделай ставку в 1000k, и мы ее заберем, а ты сможешь получить {8000 - (dice.length? dice.length * 2000: 8000)}K</div>
 
         <div className="process__img">
-            <img onClick={() => add(1)} className={'img ' + (dice.some(el => el === 1)? 'active': '')} src={require('../../assets/OneDOT.png')} alt="" />
-            <img onClick={() => add(2)} className={'img ' + (dice.some(el => el === 2)? 'active': '')} src={require('../../assets/TwoDOT.png')} alt="" />
-            <img onClick={() => add(3)} className={'img ' + (dice.some(el => el === 3)? 'active': '')} src={require('../../assets/ThreeDOT.png')} alt="" />
-            <img onClick={() => add(4)} className={'img ' + (dice.some(el => el === 4)? 'active': '')} src={require('../../assets/FourDOTS.png')} alt="" />
-            <img onClick={() => add(5)} className={'img ' + (dice.some(el => el === 5)? 'active': '')} src={require('../../assets/FiveDOT.png')} alt="" />
-            <img onClick={() => add(6)} className={'img ' + (dice.some(el => el === 6)? 'active': '')} src={require('../../assets/SixDOT.png')} alt="" />
+            <img onClick={() => add(1)} className={'img ' + (dice.some(el => el === 1)? 'active': '')} src='/assets/OneDOT.png' alt="" />
+            <img onClick={() => add(2)} className={'img ' + (dice.some(el => el === 2)? 'active': '')} src='/assets/TwoDOT.png' alt="" />
+            <img onClick={() => add(3)} className={'img ' + (dice.some(el => el === 3)? 'active': '')} src='/assets/ThreeDOT.png' alt="" />
+            <img onClick={() => add(4)} className={'img ' + (dice.some(el => el === 4)? 'active': '')} src='/assets/FourDOTS.png' alt="" />
+            <img onClick={() => add(5)} className={'img ' + (dice.some(el => el === 5)? 'active': '')} src='/assets/FiveDOT.png' alt="" />
+            <img onClick={() => add(6)} className={'img ' + (dice.some(el => el === 6)? 'active': '')} src='/assets/SixDOT.png' alt="" />
         </div>
         
         <div className="buttom">

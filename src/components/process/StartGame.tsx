@@ -1,6 +1,5 @@
 import React, {FC, useState} from 'react';
 import Button from 'react-bootstrap/Button';
-import './process.scss'
 import { sendStartGame } from '../../backend';
 import sessionState from '../../store/SessionState';
 import playerState from '../../store/PlayerState';
