@@ -81,6 +81,8 @@ const Event: FC = observer(() => {
         setRoll(!isRoll);
         setTimeout(() => {
             setDice(false);
+        }, 2000)
+        setTimeout(() => {
             typeEventTarget()
         }, 2600)
     }

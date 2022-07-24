@@ -31,3 +31,11 @@ export async function getCard() {
     const response = await axios.get<ICardData>(URL + '/api/v1/sessions/static')
     return response.data
 }
+
+export async function delSession(sessionId: string) {
+    await axios.delete(URL + '/api/v1/sessions', {
+        params: {
+            id: sessionId
+        }
+    })
+}

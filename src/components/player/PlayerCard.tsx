@@ -1,5 +1,6 @@
+import { useRouter } from 'next/router';
 import React, {FC, useState, useEffect, useRef} from 'react';
-import { sendMoveTransition, sendSurrender } from '../../backend';
+import { delSession, sendMoveTransition, sendSurrender } from '../../backend';
 import { colorActivePlayer } from '../../const/clour';
 import { StatusPlayer } from '../../enum';
 import { IPlayer } from '../../interface';
@@ -16,6 +17,7 @@ const PlayerCard: FC<IProps> = (props: IProps) => {
     const colour = colorActivePlayer[props.player.colour];
     const [show, setShow] = useState(false)
     const ref = useRef<null | HTMLDivElement>(null);
+    const router = useRouter()
 
     useEffect(() => {
         const handle = (e: any) => {
@@ -43,7 +45,12 @@ const PlayerCard: FC<IProps> = (props: IProps) => {
             setShow(!show);
         }
     }
-    console.log(props.player.status)
+    
+    function exit() {
+        router.push('/');
+        delSession(sessionState.sessionId);
+    }
+
     if(props.player.status === StatusPlayer.Won) {
         return <div className="won">
             <div className="won__text">
@@ -55,7 +62,10 @@ const PlayerCard: FC<IProps> = (props: IProps) => {
             <div>
                 {props.player.name}
             </div>
-            
+            <button onClick={exit} className='exit'>
+                Выход
+                <img src="/assets/logout.png" alt="" style={{width:'30px', height:'30px', marginLeft: '10px'}}/>
+            </button>
         </div>
     }
 
