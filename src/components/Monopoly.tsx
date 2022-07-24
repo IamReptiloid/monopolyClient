@@ -7,7 +7,6 @@ import sessionState from '../store/SessionState';
 import playerState from '../store/PlayerState';
 import { observer } from 'mobx-react-lite';
 import { setInitState } from '../utils/initApplication';
-import style from './Monopoly.module.scss';
 import { getScale } from '../utils/getScale';
 import Head from 'next/head';
 import { ICardData } from '../interface';
@@ -31,7 +30,7 @@ const Monopoly: FC<iParams> = observer(({cardData}) => {
         }
     }, [])
 
-    return <div className={style.monopoly} style={{transform: `scale(${size})`}}>
+    return <div className='monopoly' style={{transform: `scale(${size})`}}>
         <Head><title>Монополия</title></Head>
         {playerState.playerName || sessionState.isStart? '': <AddPlayer/>}
         <PlayerCards/>

@@ -5,7 +5,6 @@ import { createSession } from '../backend';
 import { createSessionId } from '../utils/createSessionId';
 import playerState from '../store/PlayerState';
 import sessionState from '../store/SessionState';
-import style from './Registration.module.scss';
 import { getColour } from '../utils/getColour';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -37,8 +36,8 @@ const Registration: FC = () => {
 
     return <>
     <Head><title>Создание игры</title></Head>
-    <div className={style.registration}>
-        <Form className={style.registration__form}>
+    <div className='registration'>
+        <Form className='registration__form'>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Имя</Form.Label>
                 <Form.Control isInvalid={validated} as="input" ref={inputRef} placeholder="Введите имя" />

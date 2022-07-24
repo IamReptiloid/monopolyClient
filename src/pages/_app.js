@@ -12,6 +12,8 @@ import '../components/field/rectangularCard.scss'
 import '../components/field/squareCard.scss'
 import '../components/chat/chat.scss'
 import 'simplebar-react/dist/simplebar.min.css';
+import '../components/Monopoly.module.scss'
+import '../components/Registration.module.scss'
 
 export default function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />

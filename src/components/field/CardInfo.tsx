@@ -22,7 +22,6 @@ interface IProps {
 
 const CardInfo: FC<IProps> = observer((props) => {
     const ref = useRef<null | HTMLDivElement>(null);
-    console.log(props.data)
 
     useEffect(() => {
         const handle = (e: any) => {
