@@ -19,6 +19,6 @@ export async function setInitState(field: IField, sessionId: string, cardData: I
     chatState.chatHistory =  initialState.chatHistory;
     playerState.players.forEach(player => {
         const coords = field.border[player.position].movementCoordinates;
-        playerState.setCoords(player.name, coords, player.position)
+        playerState.setCoordsPlayer(player.name, coords, player.position)
     })
 } 

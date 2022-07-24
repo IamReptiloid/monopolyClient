@@ -36,6 +36,16 @@ class PalyerState {
         })   
     }
 
+    setCoordsPlayer(playerName: string, coords: [number, number], position: number) {
+        this.players = this.players.map(player => {
+            if(player.name === playerName) {
+                player.coords = coords;
+                player.position = position;
+            }
+            return player;
+        })  
+    }
+
     setNewBalance(playerName: string, balance: number) {
         this.players = this.players.map(el => {
             if(el.name === playerName) {
