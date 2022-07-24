@@ -33,9 +33,5 @@ export async function getCard() {
 }
 
 export async function delSession(sessionId: string) {
-    await axios.delete(URL + '/api/v1/sessions', {
-        params: {
-            id: sessionId
-        }
-    })
+    await axios.delete(URL + '/api/v1/sessions/' + sessionId)
 }
