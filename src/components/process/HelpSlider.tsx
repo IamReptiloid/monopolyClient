@@ -12,6 +12,8 @@ const HelpSlider = () => {
                     width='250px'
                     height='350px'
                     style={{borderRadius: '10px'}}
+                    placeholder='blur'
+                    blurDataURL={`/_next/image?url=/assets/helpimg/1.png&w=16&q=1`}
                 />
             </div>
             <p>
@@ -25,6 +27,8 @@ const HelpSlider = () => {
                     width='550px'
                     height='550px'
                     style={{borderRadius: '10px'}}
+                    placeholder='blur'
+                    blurDataURL={`/_next/image?url=/assets/helpimg/2.png&w=16&q=1`}
                 />
             </div>
             <p>
@@ -39,6 +43,8 @@ const HelpSlider = () => {
                     width='400px'
                     height='150px'
                     style={{borderRadius: '10px'}}
+                    placeholder='blur'
+                    blurDataURL={`/_next/image?url=/assets/helpimg/4.png&w=16&q=1`}
                 />
             </div>
             <p>
@@ -50,6 +56,8 @@ const HelpSlider = () => {
                     width='200px'
                     height='300px'
                     style={{borderRadius: '10px'}}
+                    placeholder='blur'
+                    blurDataURL={`/_next/image?url=/assets/helpimg/3.png&w=16&q=1`}
                 />
             </div>
             <p>
@@ -65,10 +73,12 @@ const HelpSlider = () => {
                     width='250px'
                     height='150px'
                     style={{borderRadius: '10px'}}
+                    placeholder='blur'
+                    blurDataURL={`/_next/image?url=/assets/helpimg/6.png&w=16&q=1`}
                 />
             </div>
             <p>
-                Пример улици с филиалами.
+                Пример улицы с филиалами.
             </p>
         </div>
     )
