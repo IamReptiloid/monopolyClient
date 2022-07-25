@@ -11,9 +11,9 @@ const Help = () => {
       <Button variant="secondary" onClick={handleShow} className="me-2">
         Обучение
       </Button>
-      <Offcanvas show={show} onHide={handleClose} placement="top" style={{height: '400px'}}>
+      <Offcanvas show={show} onHide={handleClose} style={{width: '40vw', minWidth: '375px'}}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Обучение</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <HelpSlider/>

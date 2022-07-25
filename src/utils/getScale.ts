@@ -1,7 +1,6 @@
 export function getScale(): number {
-    if(window.innerWidth > 1330) {
+    if(window.innerHeight / 542 <= window.innerWidth / 752) {
         return window.innerHeight / 542
-    } else {
-        return window.innerWidth / 752
     }
+    return window.innerWidth / 752
 }
